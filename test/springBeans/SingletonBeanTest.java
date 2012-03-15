@@ -23,6 +23,11 @@ public class SingletonBeanTest {
     @Test
     public void should_get_prototype_bean_from_config_class() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataAccessConfiguration.class);
-//        context.getBean()
+        SingletonBean singletonBean = context.getBean("singletonBeanAware", SingletonBean.class);
+
+        String state = "state";
+        PrototypeBean prototypeBean = singletonBean.process(state);
+
+        assertThat(prototypeBean.getState(), is(state));
     }
 }
