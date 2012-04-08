@@ -1,0 +1,63 @@
+#ignore IntelliJ project files
+*.iml
+*.iws
+*.ipr
+.idea/*
+.idea
+.sonar/
+#ignore project utility files
+.pair
+.story
+.comment
+id_rsa
+#ignore build outputs, buildr test report and db folder
+out/
+Sonar/
+reports/
+target/
+stub.java
+junitvmwatcher*.properties
+.bundle/
+
+#don't ignore "mysql" as it stops packages which contain "mysql" in their contents paths to be ignored
+#mysql/
+
+#ignore tmp files at all
+tmp/
+tmp*/
+*.log
+#ignore log file
+/log/
+/deployment-scripts/logs/
+publisher/log/
+
+#this log is used for log parse
+!publisher/src/test/resources/log/*.log
+
+#ignore some file in functionaltest
+.DS_Store
+**/.DS_Store
+
+#ignore performance reports
+performance/reports/
+
+#ignore jmeter and other tools
+tools/
+
+#ignore vi undo and swap files
+*.swp
+*.un~
+*.swo
+
+#ignore ec2 environments
+ec2
+
+#ignore vagrant folder
+.vagrant
+
+#ignore ctags file
+tags
+
+#ignore Gemfile.lock in deployment, because rea-env upgrade frequently
+deployment/Gemfile.lock
+
