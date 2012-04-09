@@ -8,13 +8,15 @@ import springWeb.beans.StateBean;
 import springWeb.service.HomeService;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
-    @Autowired
+    @Inject
+    @Named
     private StateBean requestBean;
 
     @Inject
@@ -26,8 +28,8 @@ public class HomeController {
     @RequestMapping("/test")
     public void index(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(true);
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++" + requestBean.getState());
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++" + sessionBean.getState());
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++" + requestBean.getState());
         requestBean.setState("new state");
         sessionBean.setState("new state");
     }

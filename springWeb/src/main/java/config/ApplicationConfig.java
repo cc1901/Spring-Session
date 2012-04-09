@@ -11,7 +11,9 @@ public class ApplicationConfig {
     @Bean
     @Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
     public StateBean requestBean() {
-        return new StateBean();
+        StateBean stateBean = new StateBean();
+        stateBean.setState("state");
+        return stateBean;
     }
 
     @Bean

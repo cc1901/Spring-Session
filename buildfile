@@ -16,6 +16,7 @@ CGLIB = struct(
     :core => transitive("cglib:cglib:jar:2.2.2")
 )
 
+GUICE = 'com.google.inject:guice:jar:3.0'
 
 BEAN_VALIDATION_API='javax.validation:validation-api:jar:1.0.0.GA'
 LOG4J='log4j:log4j:jar:1.2.16'
@@ -81,7 +82,8 @@ define 'spring' do
         :validator => HIBERNATE_VALIDATOR_ANNOTATION,
         :cglib => CGLIB,
         :runtime => RUNTIME_DEPENDENCY,
-        :javaInject => JAVA_INJECT
+        :javaInject => JAVA_INJECT,
+        :injector => GUICE
     )
 
     compile.with WEB_DEPENDENCY

@@ -14,10 +14,10 @@
                             http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
     <!-- Scans within the base package of the application for @Components to configure as springWeb.beans -->
     <!-- @Controller, @Service, @Configuration, etc. -->
-    <context:component-scan base-package="springWeb.controller"/>
+    <!--<context:component-scan base-package="springWeb.controller"/>-->
     <context:annotation-config/>
-    <!--<bean class="config.ApplicationConfig"/>-->
-    <!--<bean class="config.ApplicationXMLConfig"/>-->
+    <bean class="config.ApplicationConfig"/>
+    <bean class="config.ApplicationXMLConfig"/>
     <bean class="config.ApplicationImportConfig"/>
 
     <!-- Enables the Spring MVC @Controller programming model -->
