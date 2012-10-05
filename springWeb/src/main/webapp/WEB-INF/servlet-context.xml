@@ -14,7 +14,8 @@
                             http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
     <!-- Scans within the base package of the application for @Components to configure as springWeb.beans -->
     <!-- @Controller, @Service, @Configuration, etc. -->
-    <!--<context:component-scan base-package="springWeb.controller"/>-->
+    <import resource="classpath:beans.xml"/>
+    <context:component-scan base-package="springWeb.controller"/>
     <context:annotation-config/>
     <bean class="config.ApplicationConfig"/>
     <bean class="config.ApplicationXMLConfig"/>
@@ -23,7 +24,31 @@
     <!-- Enables the Spring MVC @Controller programming model -->
     <mvc:annotation-driven/>
 
-    <!--<import resource="classpath:beans.xml"/>-->
 
     <bean id="homeService" class="springWeb.service.HomeService"/>
+
+    <bean id="helloWorld"  class="springWeb.controller.HelloWorld"/>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+            <property name="cache" value="false"/>
+            <property name="prefix" value=""/>
+            <property name="suffix" value=".ftl"/>
+            <property name="exposeSpringMacroHelpers" value="true"/>
+            <property name="requestContextAttribute" value="requestContext"/>
+            <property name="contentType" value="text/html;charset=UTF-8"/>
+        </bean>
+
+    <bean id="freeMarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPaths">
+            <list>
+                <value>/WEB-INF/freemarker</value>
+            </list>
+        </property>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_exception_handler">rethrow</prop>
+                <prop key="defaultEncoding">UTF-8</prop>
+            </props>
+        </property>
+    </bean>
 </beans>

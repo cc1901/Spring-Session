@@ -1,0 +1,2 @@
+javac springWeb/controller/HelloWorld.java
+javah springWeb.controller.HelloWorld

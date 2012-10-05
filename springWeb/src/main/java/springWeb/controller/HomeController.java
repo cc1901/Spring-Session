@@ -15,22 +15,22 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
-    @Inject
-    @Named
-    private StateBean requestBean;
+//    @Inject
+//    @Named
+//    private StateBean requestBean;
 
-    @Inject
-    private StateBean sessionBean;
+//    @Inject
+//    private StateBean sessionBean;
 
     @Autowired
     private HomeService homeService;
 
     @RequestMapping("/test")
     public void index(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(true);
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++" + sessionBean.getState());
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++" + requestBean.getState());
-        requestBean.setState("new state");
-        sessionBean.setState("new state");
+//        HttpSession session = request.getSession(true);
+//        System.out.println("++++++++++++++++++++++++++++++++++++++++++++" + sessionBean.getState());
+//        System.out.println("++++++++++++++++++++++++++++++++++++++++++++" + requestBean.getState());
+//        requestBean.setState("new state");
+//        sessionBean.setState("new state");
     }
 }

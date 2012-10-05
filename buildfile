@@ -5,12 +5,18 @@ require 'readline'
 require 'fileutils'
 include FileUtils
 
+repositories.remote << 'http://mvnrepository.com/artifact'
 repositories.remote << "http://repository.springsource.com/maven/bundles/release"
 repositories.remote << "http://repository.springsource.com/maven/bundles/external"
 repositories.remote << 'http://www.ibiblio.org/maven2'
 repositories.remote << 'http://download.java.net/maven/2'
 repositories.remote << 'http://repo1.maven.org/maven2'
 repositories.remote << 'https://repository.jboss.org/nexus/content/groups/public-jboss'
+
+
+
+
+
 
 CGLIB = struct(
     :core => transitive("cglib:cglib:jar:2.2.2")
@@ -23,6 +29,8 @@ LOG4J='log4j:log4j:jar:1.2.16'
 
 JAVA_INJECT = transitive('javax.inject:javax.inject:jar:1')
 
+MOCKITO = 'org.mockito:mockito-all:jar:1.8.5'
+
 SPRING_VERSION = '3.1.0.RELEASE'
 SPRING = struct(
     :core => group('spring-core', 'spring-beans', 'spring-context', 'spring-context-support', :under=>"org.springframework", :version=>SPRING_VERSION),
@@ -33,8 +41,13 @@ SPRING = struct(
     :test => "org.springframework:spring-test:jar:#{SPRING_VERSION}"
 )
 
-HIBERNATE_VALIDATOR_ANNOTATION = group('hibernate-validator-annotation-processor', 'hibernate-validator',
-                                       :under=>'org.hibernate', :version=>'4.1.0.Final')
+HIBERNATE_VERSION = '4.1.7.Final'
+
+HIBERNATE = struct(
+    :entity_manager => "org.hibernate:hibernate-entitymanager:jar:#{HIBERNATE_VERSION}",
+    :validator_annotation => group('hibernate-validator-annotation-processor', 'hibernate-validator',:under=>'org.hibernate', :version=> "4.1.0.Final"),
+    :jpa_api => "org.hibernate.javax.persistence:hibernate-jpa-2.0-api:jar:1.0.1.Final"
+)
 
 JETTY_VERSION = "6.1.3"
 SLF4J_VERSION = "1.4.3"
@@ -50,6 +63,8 @@ SLF4J = struct(
     :api => "org.slf4j:slf4j-api:jar:#{SLF4J_VERISON}",
     :runtime => transitive("org.slf4j:slf4j-log4j12:jar:#{SLF4J_VERISON}")
 )
+
+FREEMARKER = 'org.freemarker:freemarker:jar:2.3.18'
 
 RUNTIME_DEPENDENCY = [SLF4J]
 
@@ -79,15 +94,23 @@ define 'spring' do
         :beanValidationApi => BEAN_VALIDATION_API,
         :log4j => LOG4J,
         :spring => SPRING,
-        :validator => HIBERNATE_VALIDATOR_ANNOTATION,
+        :validator => HIBERNATE.validator_annotation,
+        :entity_manager => HIBERNATE.entity_manager,
         :cglib => CGLIB,
         :runtime => RUNTIME_DEPENDENCY,
         :javaInject => JAVA_INJECT,
-        :injector => GUICE
+        :injector => GUICE,
+        :freemarker => FREEMARKER
+    )
+
+    TEST_DEPENDENCY =struct(
+        :mock => MOCKITO
     )
 
     compile.with WEB_DEPENDENCY
     package(:war).with :libs=> WEB_DEPENDENCY
+
+    test.with TEST_DEPENDENCY
 
     Java.classpath << JETTY_JSP
 
