@@ -1,0 +1,1 @@
+g++   -DTIXML_USE_STL -DOS_LINUX -D__cplusplus -fPIC   -D_CHAT_LOG -o chatEngine.o ../BasicSearch/libBasicSearch.a ../MixParser/libMixParser.a ../SemanticEngine/libSemanticEngine.a ../DynamicParser/libDynamicParser.a ../Common/tinyxml/libTinyXml.a ../WordNetwork/libWordNetwork.a ../StaticParser/libStaticParser.a -lpthread

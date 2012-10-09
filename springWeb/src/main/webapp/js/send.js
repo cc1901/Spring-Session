@@ -23,7 +23,7 @@ ns('robosay', function (ns) {
             $('#talk-input').val('');
             var talkHistory = $('#talk-history').val();
             $('#talk-history').val(talkHistory + '\n' + input);
-            $.get('/talk', requestData, function (data) {
+            $.get('/chat-engine/talk', requestData, function (data) {
                 var talkHistory = $('#talk-history').val();
                 $('#talk-history').val(talkHistory + '\n' + data);
             });

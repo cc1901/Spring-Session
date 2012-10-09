@@ -6,9 +6,9 @@
 aisms::ChatEngine *chatEngine;
 
 JNIEXPORT jstring JNICALL Java_springWeb_controller_HelloWorld_test
-  (JNIEnv *env, jobject obj, jstring text, jstring context){
+  (JNIEnv *env, jobject obj){
     
-    std::string result = chatEngine->process(text, context);
+    std::string result = chatEngine->process("ä½å","");
     return env->NewStringUTF(result.c_str());
   }
 
@@ -33,3 +33,7 @@ JNIEXPORT void JNICALL JNI_OnUnload( JavaVM *vm, void *pvt )
         delete chatEngine;
         std::cout<<"************************************* JNI_OnUnload called\n";
   }
+
+
+
+
