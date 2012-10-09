@@ -7,8 +7,13 @@ aisms::ChatEngine *chatEngine;
 
 JNIEXPORT jstring JNICALL Java_springWeb_controller_HelloWorld_test
   (JNIEnv *env, jobject obj, jstring text, jstring context){
-    
-    std::string result = chatEngine->process(text, context);
+    const char* textInCache = env->GetStringUTFChars(text, JNI_FALSE);
+    const char* contextInCache = env->GetStringUTFChars(context, JNI_FALSE);
+    std::string textString = textInCache;
+    std::string contextString = contextInCache;
+    env->ReleaseStringUTFChars( text, textInCache);
+    env->ReleaseStringUTFChars( context, contextInCache);
+    std::string result = chatEngine->process(textString, contextString);
     return env->NewStringUTF(result.c_str());
   }
 

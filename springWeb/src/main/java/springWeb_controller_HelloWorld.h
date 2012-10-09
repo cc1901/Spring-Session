@@ -15,10 +15,6 @@ extern "C" {
 JNIEXPORT jstring JNICALL Java_springWeb_controller_HelloWorld_test
   (JNIEnv *, jobject, jstring, jstring);
 
-JNIEXPORT jint JNICALL JNI_OnLoad( JavaVM *, void *);
-
-JNIEXPORT void JNICALL JNI_OnUnload( JavaVM *, void *);
-
 #ifdef __cplusplus
 }
 #endif
