@@ -12,13 +12,13 @@ public class HelloWorld {
     }
 
     static {
-        try {
-            System.load("/var/lib/tomcat6/webapps/chat-engine/WEB-INF/lib/libhelloworld.so");
-        } catch (Exception e) {
-            System.out.println("test");
-            System.out.println(e);
-        }
-        //System.load("/Users/twer/homeideas/Spring-Session/springWeb/src/main/java/libhelloworld.jnilib");
+//        try {
+//            System.load("/var/lib/tomcat6/webapps/chat-engine/WEB-INF/lib/libhelloworld.so");
+//        } catch (Exception e) {
+//            System.out.println("test");
+//            System.out.println(e);
+//        }
+        System.load("/Users/twer/homeideas/Spring-Session/springWeb/src/main/java/libhelloworld.jnilib");
 //        System.load("libhelloworld.jnilib");
     }
 }

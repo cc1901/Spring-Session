@@ -10,10 +10,14 @@ extern "C" {
 /*
  * Class:     springWeb_controller_HelloWorld
  * Method:    test
- * Signature: (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
  */
 JNIEXPORT jstring JNICALL Java_springWeb_controller_HelloWorld_test
   (JNIEnv *, jobject, jstring, jstring);
+
+JNIEXPORT jint JNICALL JNI_OnLoad( JavaVM *, void *);
+
+JNIEXPORT void JNICALL JNI_OnUnload( JavaVM *, void *);
 
 #ifdef __cplusplus
 }

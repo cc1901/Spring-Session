@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="true"
+         monitoring="autodetect">
+
+    <cache name="fetchTicketsInfo" maxElementsInMemory="10000"
+           maxElementsOnDisk="1000" eternal="false" overflowToDisk="true"
+           diskSpoolBufferSizeMB="20" timeToIdleSeconds="5"
+           timeToLiveSeconds="5"
+           memoryStoreEvictionPolicy="2000"/>
+
+</ehcache>

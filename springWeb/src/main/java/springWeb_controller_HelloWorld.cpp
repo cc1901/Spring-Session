@@ -17,15 +17,6 @@ JNIEXPORT jstring JNICALL Java_springWeb_controller_HelloWorld_test
     return env->NewStringUTF(result.c_str());
   }
 
-
-
-// JNIEXPORT void JNICALL Java_springWeb_controller_HelloWorld_setChatEnginePointer
-//   (JNIEnv *env, jobject obj){
-//     // jclass clazz = env->GetObjectClass(env, obj);
-//     // jmethodID methodId = env->GetMethodID(env, clazz, "setChatEnginePointer", "int");
-//     // env->CallVoidMethod(env, obj, methodId, 100);
-//   }
-
 JNIEXPORT jint JNICALL JNI_OnLoad( JavaVM *vm, void *pvt ){
         std::cout<<"************************************* JNI_OnLoad called\n";
         chatEngine = new aisms::ChatEngine();
