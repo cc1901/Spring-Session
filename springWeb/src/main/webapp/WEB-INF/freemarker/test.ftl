@@ -1,19 +1,3 @@
-<#--<!DOCTYPE html>-->
-
-<#--<#setting url_escaping_charset="UTF-8">-->
-<#--<html lang="en-AU" xml:lang="en-AU" xmlns="http://www.w3.org/1999/xhtml">-->
-<#--<head>-->
-<#--</head>-->
-
-<#--<body>-->
-    <#--<textarea id="talk-history" rows="25" cols="100"></textarea>-->
-    <#--<textarea id="talk-input" rows="10" cols="100"></textarea>-->
-    <#--<button id="talk-send">SEND</button>-->
-    <#--<script src="js/jquery-1.7.custom.min.js"></script>-->
-    <#--<script src="js/send.js"></script>-->
-<#--</body>-->
-<#--</html>-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -56,22 +40,22 @@
             </div>
             <!--left end-->
             <!--right start-->
-            <div class="mian-right" id="mian-right">
+            <div class="main-right" id="main-right">
                 <h2>
                     公告</h2>
                 <ul>
-                    <li><a href="#">如何查看我预订的机票订单..</a></li>
-                    <li><a href="#">我的机票订单找不到了？</a></li>
-                    <li><a href="#">机票订单可以评价吗？</a></li>
-                    <li><a href="#">出票状态的机票订单可以取..</a></li>
+                    <li><a class="faq-link" href="#">如何查看我预订的机票订单..</a></li>
+                    <li><a class="faq-link" href="#">我的机票订单找不到了？</a></li>
+                    <li><a class="faq-link" href="#">机票订单可以评价吗？</a></li>
+                    <li><a class="faq-link" href="#">出票状态的机票订单可以取..</a></li>
                 </ul>
                 <h2>
                     热门问题</h2>
                 <ul>
-                    <li><a href="#">如何给处理退款、维权、举..</a></li>
-                    <li><a href="#">留言页面在哪里？</a></li>
-                    <li><a href="#">机票订单可以评价吗？</a></li>
-                    <li><a href="#">出票状态的机票订单可以取..</a></li>
+                    <li><a class="faq-link" href="#">如何给处理退款、维权、举..</a></li>
+                    <li><a class="faq-link" href="#">留言页面在哪里？</a></li>
+                    <li><a class="faq-link" href="#">机票订单可以评价吗？</a></li>
+                    <li><a class="faq-link" href="#">出票状态的机票订单可以取..</a></li>
                 </ul>
             </div>
             <!--right end-->
@@ -82,4 +66,3 @@
 <script src="js/jquery-1.7.custom.min.js"></script>
 <script src="js/service.js" type="text/javascript"></script>
 <script src="js/send.js"></script>
-

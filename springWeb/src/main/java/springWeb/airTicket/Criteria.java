@@ -40,11 +40,11 @@ public class Criteria {
     }
 
     public String getDepartureDate() {
-        return departureDate;
+        return departureDate.replaceAll("/", "-").trim();
     }
 
     public String cacheKey() {
-        return departure.trim() + destination.trim() + departureDate.trim();
+        return departure.trim() + destination.trim() + getDepartureDate();
     }
 
     @Override

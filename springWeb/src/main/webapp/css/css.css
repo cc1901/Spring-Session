@@ -1,456 +1,210 @@
-body {
-    margin: 0;
-    padding: 0;
-    font: 12px/22px "微软雅黑", Arial, simsum;
-    color: #000;
-    background: #fff;
-}
+body{margin:0;padding:0;font:12px/22px  "微软雅黑",Arial,simsum;color:#000; background:#fff;}
+html{ overflow:hidden;}
+ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,form,p{margin:0px;padding:0px;}
+ul,ol{list-style-type:none}
+img{border:0;}
+input,select{vertical-align:middle;}
+a{color:#000;text-decoration:none;}
+a:hover{color:#000;text-decoration:underline;}
 
-html {
-    overflow: hidden;
-}
+#panel{ display:none;}
+#header,#header .right,.msg span.arrow,.main-right ul li,.chkinput,.fun li.good a,.fun li.bad a{background:url(../images/bg_img.png) no-repeat;}
+#header {width:100%;height:60px;color:#fff;background-color:#58b2f2;background-repeat:repeat-x;box-shadow:0 3px 3px;}
+#header .right{float:right; margin:18px 10px 0 0;font-size:14px;height:24px; line-height:24px;padding-right:85px; background-position: right -78px;}
+.appinfo {float:left;height:36px;padding:10px 0 0 10px;position:relative; width:300px;}
+.appinfo .logo {background-color:#fff;border: 1px solid #335A8B;border-radius:5px 5px 5px 5px;float: left;margin-right: 10px;padding:2px;width:34px;height:34px;}
+.appinfo .logo img {display: block;width: 34px;}
+.appinfo h1 { font-size:15px;}
+.appinfo p {color:#BDD4F0;line-height:20px;}
 
-ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, p {
-    margin: 0px;
-    padding: 0px;
+#main{ clear:both; display:block;}
+.main-left{float:left;}
+.grid-box
+{
+    border:10px solid #fff;
+    position:relative;
+    overflow:hidden;
+    zoom:1;
+    overflow-y: auto; 
+    scrollbar-face-color: #F8FBFE;
+    scrollbar-highlight-color: #B9C1D1;
+    scrollbar-shadow-color: #B9C1D1;
+    scrollbar-3dlight-color: #fff;
+    scrollbar-arrow-color: #B9C1D1;
+    scrollbar-track-color: #fff;
+    scrollbar-darkshadow-color: #fff;
 }
+.col-main {float: left;min-height:1px;width:100%;}
+.grid-talk,.grid-talkf{clear:both; overflow:hidden;zoom:1;}
+.grid-talkf .info-user{ float:left;margin-left:-100%;}
+.grid-talk .info-user{ float:left;margin-left:-56px;}
+.main-left .info-user {background-color:#fff;border: 1px solid #335A8B;border-radius: 5px 5px 5px 5px;padding:2px;width:34px;height:34px;}
+.main-left .info-user img {display: block;width: 34px;}
+.grid-talkf .msg-box{float:left;margin-right:220px;margin-left:54px; display:inline;}
+.grid-talk .msg-box{float:right;padding: 0 10px 10px 20%;margin-right:60px;}
+.grid-talkf .msg {border:1px solid #CCCCCC;float:left;}
+.grid-talk{clear:both;}
+.grid-talk .fun{clear:both;}
+.grid-talk .fun li {margin:5px 6px 0 6px;float:right;line-height: 18px;}
+.grid-talk .fun li a{padding-left:15px;}
+.grid-talk .fun li.good a{background-position:0 -232px;}
+.grid-talk .fun li.bad a{background-position:-65px -232px;}
+.grid-talk .msg {float:left;}
+.grid-box .msg {border: 1px solid #ccc;border-radius:5px 5px 5px 5px;color:#5E5E5E;line-height: 180%;padding:10px;position: relative;}
+.grid-talkf span.arrow {left: -7px;}
+.msg span.arrow {background-position:0 -168px;display:inline-block;height:13px;position:absolute;top:10px;width:7px;}
+.grid-talk span.arrow {right: -7px;background-position:-7px -168px;}
+.main-left .time {clear:both;color:#ccc;}
 
-ul, ol {
-    list-style-type: none
-}
 
-img {
-    border: 0;
-}
+.main-right {float:right; min-width:219px; width:219px;background-color: #F8FBFE;border-left:1px solid #B9C1D1;box-shadow: 0 0 5px #aaa; height:5000px;}
+.main-right  h2{background-color:#D4DAE2;font-size:14px;height:30px;line-height:30px;padding-left:19px;}
+.main-right ul{ padding:8px 10px;}
+.main-right ul li{ padding-left:8px;background-position:0 -200px;}
+.main-right ul li a{color: #5382AA;}
 
-input, select {
-    vertical-align: middle;
-}
+#inputpanel { clear:both;background-color:#D4DAE2;box-shadow:0 -3px 8px #DDDDDD;height:75px;padding-top:10px;width:100%;}
+.chatform {background-color:#fff;border:1px solid #D4DAE2;border-radius: 5px 5px 5px 5px;height: 39px;margin: 0 10px;}
+.chatform:hover{ border-color:#66BAEE; box-shadow:0 0 10px #66BAEE;}
+.chatbtn {background:url(../images/icon_send.png) no-repeat scroll 0 0 transparent;border-width:0;float: right;height:39px;width:85px;}
+.chatform input{background-color: #FFFFFF;border-width: 0;float: left;font-size: 14px;height: 29px;line-height:29px;margin:5px 10px;outline:medium none;overflow:hidden;width:80%;}
+.chatbtn s {visibility: hidden;}
+.chkinput{clear:both; margin:4px 0 0 15px;padding-left:20px;background-position:0 -128px;}
+.chkinput em{font-family: Constantia,Georgia;font-size: 18px;font-weight:bold; color:#F00;font-style: normal;}
 
-a {
-    color: #000;
-    text-decoration: none;
-}
 
-a:hover {
-    color: #000;
-    text-decoration: underline;
-}
 
-#panel {
-    display: none;
-}
-
-#header, #header .right, .msg span.arrow, .mian-right ul li, .chkinput, .fun li.good a, .fun li.bad a {
-    background: url(../images/bg_img.png) no-repeat;
-}
-
-#header {
-    width: 100%;
-    height: 60px;
-    color: #fff;
-    background-color: #58b2f2;
-    background-repeat: repeat-x;
-    box-shadow: 0 3px 3px;
-}
-
-#header .right {
-    float: right;
-    margin: 18px 10px 0 0;
-    font-size: 14px;
-    height: 24px;
-    line-height: 24px;
-    padding-right: 85px;
-    background-position: right -78px;
-}
-
-.appinfo {
-    float: left;
-    height: 36px;
-    padding: 10px 0 0 10px;
-    position: relative;
-    width: 300px;
-}
-
-.appinfo .logo {
-    background-color: #fff;
-    border: 1px solid #335A8B;
-    border-radius: 5px 5px 5px 5px;
-    float: left;
-    margin-right: 10px;
-    padding: 2px;
-    width: 34px;
-    height: 34px;
-}
-
-.appinfo .logo img {
-    display: block;
-    width: 34px;
-}
-
-.appinfo h1 {
-    font-size: 15px;
-}
-
-.appinfo p {
-    color: #BDD4F0;
-    line-height: 20px;
-}
-
-#mian {
-    clear: both;
-    display: block;
-}
-
-.main-left {
-    float: left;
-}
-
-.grid-box {
-    border: 10px solid #fff;
-    position: relative;
-    overflow: hidden;
-    zoom: 1;
-}
-
-.col-main {
-    float: left;
-    min-height: 1px;
-    width: 100%;
-}
-
-.grid-talk, .grid-talkf {
-    clear: both;
-    overflow: hidden;
-    zoom: 1;
-}
-
-.grid-talkf .info-user {
-    float: left;
-    margin-left: -100%;
-}
-
-.grid-talk .info-user {
-    float: left;
-    margin-left: -56px;
-}
-
-.main-left .info-user {
-    background-color: #fff;
-    border: 1px solid #335A8B;
-    border-radius: 5px 5px 5px 5px;
-    padding: 2px;
-    width: 34px;
-    height: 34px;
-}
-
-.main-left .info-user img {
-    display: block;
-    width: 34px;
-}
-
-.grid-talkf .msg-box {
-    float: left;
-    margin-right: 220px;
-    margin-left: 54px;
-    display: inline;
-}
-
-.grid-talk .msg-box {
-    float: right;
-    padding: 0 10px 10px 20%;
-    margin-right: 60px;
-}
-
-.grid-talkf .msg {
-    border: 1px solid #CCCCCC;
-    float: left;
-}
-
-.grid-talk {
-    clear: both;
-}
-
-.grid-talk .fun {
-    clear: both;
-}
-
-.grid-talk .fun li {
-    margin: 5px 6px 0 6px;
-    float: right;
-    line-height: 18px;
-}
-
-.grid-talk .fun li a {
-    padding-left: 15px;
-}
-
-.grid-talk .fun li.good a {
-    background-position: 0 -232px;
-}
-
-.grid-talk .fun li.bad a {
-    background-position: -65px -232px;
-}
-
-.grid-talk .msg {
-    float: left;
-}
-
-.grid-box .msg {
-    border: 1px solid #ccc;
-    border-radius: 5px 5px 5px 5px;
-    color: #5E5E5E;
-    line-height: 180%;
-    padding: 10px;
-    position: relative;
-}
-
-.grid-talkf span.arrow {
-    left: -7px;
-}
-
-.msg span.arrow {
-    background-position: 0 -168px;
-    display: inline-block;
-    height: 13px;
-    position: absolute;
-    top: 10px;
-    width: 7px;
-}
-
-.grid-talk span.arrow {
-    right: -7px;
-    background-position: -7px -168px;
-}
-
-.main-left .time {
-    clear: both;
-    color: #ccc;
-}
-
-.mian-right {
-    float: right;
-    min-width: 219px;
-    width: 219px;
-    background-color: #F8FBFE;
-    border-left: 1px solid #B9C1D1;
-    box-shadow: 0 0 5px #aaa;
-    height: 5000px;
-}
-
-.mian-right  h2 {
-    background-color: #D4DAE2;
-    font-size: 14px;
-    height: 30px;
-    line-height: 30px;
-    padding-left: 19px;
-}
-
-.mian-right ul {
-    padding: 8px 10px;
-}
-
-.mian-right ul li {
-    padding-left: 8px;
-    background-position: 0 -200px;
-}
-
-.mian-right ul li a {
-    color: #5382AA;
-}
-
-#inputpanel {
-    clear: both;
-    background-color: #D4DAE2;
-    box-shadow: 0 -3px 8px #DDDDDD;
-    height: 75px;
-    padding-top: 10px;
-    width: 100%;
-}
-
-.chatform {
-    background-color: #fff;
-    border: 1px solid #D4DAE2;
-    border-radius: 5px 5px 5px 5px;
-    height: 39px;
-    margin: 0 10px;
-}
-
-.chatform:hover {
-    border-color: #66BAEE;
-    box-shadow: 0 0 10px #66BAEE;
-}
-
-.chatbtn {
-    background: url(../images/icon_send.png) no-repeat scroll 0 0 transparent;
-    border-width: 0;
-    float: right;
-    height: 39px;
-    width: 85px;
-}
-
-.chatform input {
-    background-color: #FFFFFF;
-    border-width: 0;
-    float: left;
-    font-size: 14px;
-    height: 29px;
-    line-height: 29px;
-    margin: 5px 10px;
-    outline: medium none;
-    overflow: hidden;
-    width: 80%;
-}
-
-.chatbtn s {
-    visibility: hidden;
-}
-
-.chkinput {
-    clear: both;
-    margin: 4px 0 0 15px;
-    padding-left: 20px;
-    background-position: 0 -128px;
-}
-
-.chkinput em {
-    font-family: Constantia, Georgia;
-    font-size: 18px;
-    font-weight: bold;
-    color: #F00;
-    font-style: normal;
-}
 
 /* Modules:= scroll {{{ */
-/*轨道*/
-.clear-track, .clear-track-hover, .clear-track-active,
+    /*轨道*/
+    .clear-track, .clear-track-hover, .clear-track-active,
     /*向上箭头*/
-.clear-arrowup, .clear-arrowup-hover, .clear-arrowup-active,
+    .clear-arrowup, .clear-arrowup-hover, .clear-arrowup-active,
     /*向下箭头*/
-.clear-arrowdown, .clear-arrowdown-hover, .clear-arrowdown-active,
+    .clear-arrowdown, .clear-arrowdown-hover, .clear-arrowdown-active,
     /*拖拽条*/
-.clear-drag, .clear-drag-hover, .clear-drag-active,
-.clear-dragtop, .clear-dragbottom, .clear-dragcenter {
-    width: 9px;
-    background-image: url(../images/clear-track.png);
-    background-repeat: repeat-y;
-}
+    .clear-drag, .clear-drag-hover, .clear-drag-active,
+    .clear-dragtop, .clear-dragbottom , .clear-dragcenter {
+        width:9px;
+        background-image:url(../images/clear-track.png);
+        background-repeat:repeat-y;
+    }
 
-/*轨道*/
-.clear-track {
-    width: 9px;
-    background-position: -18px 0;
-}
 
-.clear-track-hover {
-    background-position: -27px 0;
-}
+    /*轨道*/
+    .clear-track {
+        width:9px;
+        background-position:-18px 0;
+    }
+    .clear-track-hover {
+        background-position:-27px 0;
+    }
+    .clear-track-active {
+        background-position:-27px 0;
+    }
 
-.clear-track-active {
-    background-position: -27px 0;
-}
 
-/*上下箭头 */
-.clear-arrowup, .clear-arrowdown {
-    display: block;
-    text-indent: -1000px;
-    width: 9px;
-    height: 2px;
-    overflow: hidden;
-}
 
-.clear-arrowup {
-    background-position: 0 0;
-}
 
-.clear-arrowup-hover {
-    background-position: -9px 0;
-}
 
-.clear-arrowup-active {
-    background-position: -9px 0;
-}
+    /*上下箭头 */
+    .clear-arrowup, .clear-arrowdown {
+        display:block;
+        text-indent: -1000px;
+        width:9px;
+        height:2px;
+        overflow:hidden;
+    }
 
-.clear-arrowdown {
-    background-position: 0 -18px;
-}
+    .clear-arrowup {
+        background-position:0 0;
+    }
+    .clear-arrowup-hover {
+        background-position:-9px 0;
+    }
+    .clear-arrowup-active {
+        background-position:-9px 0;
+    }
 
-.clear-arrowdown-hover {
-    background-position: -9px -18px;
-}
 
-.clear-arrowdown-active {
-    background-position: -9px -18px;
-}
+    .clear-arrowdown {
+        background-position:0 -18px;
+    }
+    .clear-arrowdown-hover {
+        background-position:-9px -18px;
+    }
+    .clear-arrowdown-active {
+        background-position:-9px -18px;
+    }
 
-/*拖拽条*/
-.clear-drag {
-    width: 9px;
-    background-position: -54px 0;
-}
 
-.clear-drag .clear-dragtop {
-    position: absolute;
-    top: 0px;
-    width: 9px;
-    height: 4px;
-    overflow: hidden;
-    background-position: -72px 0;
-}
 
-.clear-drag .clear-dragbottom {
-    position: absolute;
-    top: 100%;
-    margin-top: -4px;
-    width: 9px;
-    height: 5px;
-    overflow: hidden;
-    background-position: -72px -4px;
-}
+    /*拖拽条*/
+    .clear-drag{
+        width:9px;
+        background-position:-54px 0;
+    }
 
-.clear-drag .clear-dragcenter {
-    position: absolute;
-    top: 50%;
-    margin-top: -10px;
-    width: 9px;
-    height: 20px;
-    background-position: -63px 0;
-}
+    .clear-drag .clear-dragtop{
+        position:absolute;
+        top:0px;
+        width:9px;
+        height:4px;
+        overflow:hidden;
+        background-position:-72px 0;
+    }
 
-/*------------*/
-.clear-drag-hover {
-    background-position: -81px 0;
-}
+    .clear-drag .clear-dragbottom{
+        position:absolute;
+        top:100%;
+        margin-top:-4px;
+        width:9px;
+        height:5px;
+        overflow:hidden;
+        background-position:-72px -4px;
+    }
 
-.clear-drag-hover .clear-dragtop {
-    background-position: -99px 0;
-}
+    .clear-drag .clear-dragcenter{
+        position:absolute;
+        top:50%;
+        margin-top:-10px;
+        width:9px;
+        height:20px;
+        background-position:-63px 0;
+    }
 
-.clear-drag-hover .clear-dragbottom {
-    background-position: -99px -4px;
-}
+    /*------------*/
+    .clear-drag-hover{
+        background-position:-81px 0;
+    }
 
-.clear-drag-hover .clear-dragcenter {
-    background-position: -90px 0;
-}
+    .clear-drag-hover .clear-dragtop{
+        background-position:-99px 0;
+    }
 
-/*------------*/
-.clear-drag-active {
-    background-position: -81px 0;
-}
+    .clear-drag-hover .clear-dragbottom{
+        background-position:-99px -4px;
+    }
 
-.clear-drag-active .clear-dragtop {
-    background-position: -99px 0;
-}
+    .clear-drag-hover .clear-dragcenter{
+        background-position:-90px 0;
+    }
 
-.clear-drag-active .clear-dragbottom {
-    background-position: -99px -4px;
-}
+    /*------------*/
+    .clear-drag-active{
+        background-position:-81px 0;
+    }
 
-.clear-drag-active .clear-dragcenter {
-    background-position: -90px 0;
-}
+    .clear-drag-active .clear-dragtop{
+        background-position:-99px 0;
+    }
 
+    .clear-drag-active .clear-dragbottom{
+        background-position:-99px -4px;
+    }
+
+    .clear-drag-active .clear-dragcenter{
+        background-position:-90px 0;
+    }
 /* }}} */
 

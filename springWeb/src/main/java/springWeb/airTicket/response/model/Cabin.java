@@ -18,4 +18,22 @@ public class Cabin {
     @JacksonXmlProperty(localName = "AdultPrice")
     private String adultPrice;
 
+    public Cabin() {
+    }
+
+    public Cabin(String adultPrice) {
+        this.adultPrice = adultPrice;
+    }
+
+    public String getCabinType() {
+        return cabinType;
+    }
+
+    public String getChildiePrice() {
+        return childiePrice;
+    }
+
+    public String getAdultPrice() {
+        return adultPrice;
+    }
 }

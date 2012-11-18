@@ -19,6 +19,5 @@ public class HelloWorld {
 //            System.out.println(e);
 //        }
         System.load("/Users/twer/homeideas/Spring-Session/springWeb/src/main/java/libhelloworld.jnilib");
-//        System.load("libhelloworld.jnilib");
     }
 }

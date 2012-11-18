@@ -2,10 +2,12 @@ package springWeb.airTicket.response;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.junit.Test;
+import springWeb.airTicket.response.model.AirLine;
 import springWeb.airTicket.response.model.TicketQueryResponse;
 import springWeb.util.XmlParser;
 
 import java.io.*;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -983,6 +985,9 @@ public class XmlParserTest {
                 "</FlightSearchReply>";
         TicketQueryResponse ticketQueryResponse = (TicketQueryResponse) parser.parse(content, TicketQueryResponse.class);
 //        TicketQueryResponse ticketQueryResponse = xmlMapper.readValue(content, TicketQueryResponse.class);
-        assertThat(ticketQueryResponse.getLinesCollection().getLines().getAirLines(), notNullValue());
+        List<AirLine> airLines = ticketQueryResponse.getLinesCollection().getLines().getAirLines();
+        assertThat(airLines, notNullValue());
+        assertThat(airLines.get(0).getAirportTax(), is("50"));
+        assertThat(airLines.get(0).getCabins().get(0).getAdultPrice(), is("3050"));
     }
 }
