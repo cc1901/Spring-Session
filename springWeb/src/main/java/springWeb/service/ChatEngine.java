@@ -13,7 +13,7 @@ public class ChatEngine {
 
     static {
 //        try {
-//            System.load("/var/lib/tomcat6/webapps/chat-engine/WEB-INF/lib/libhelloworld.so");
+//            System.load("/var/lib/tomcat6/webapps/chat-engine/WEB-INF/lib/libChatEngine.so");
 //        } catch (Exception e) {
 //            System.out.println("test");
 //            System.out.println(e);
