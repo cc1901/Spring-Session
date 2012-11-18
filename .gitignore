@@ -20,4 +20,6 @@ stub.java
 *.swp
 *.un~
 *.swo
-
+#ignore class file
+*.class
+.private_key

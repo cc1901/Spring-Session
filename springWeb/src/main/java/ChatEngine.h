@@ -2,10 +2,12 @@
 #define CHAT_ENGINE_H
 #include <string>
 
-class ChatEngine {
-public:
-    std::string talk();
-};
-
+namespace aisms{
+    class ChatEngine {
+    public:
+        std::string process(std::string, std::string);
+        bool init(const std::string);
+    };
+}
 #endif
 

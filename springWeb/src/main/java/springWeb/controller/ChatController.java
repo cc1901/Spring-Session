@@ -1,7 +1,7 @@
 package springWeb.controller;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-import org.apache.log4j.helpers.DateTimeDateFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import springWeb.airTicket.TicketInformationFetcher;
 import springWeb.airTicket.response.model.AirLine;
 import springWeb.airTicket.response.model.TicketQueryResponse;
+import springWeb.service.ChatEngine;
 import springWeb.service.ChatInfoLogger;
+import springWeb.service.ChatService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +29,7 @@ public class ChatController {
     public static final String CONTEXT = "context";
     public static final String TICKET_QUERY_FLAG = "<$query$>";
     @Autowired
-    private HelloWorld helloWorld;
+    private ChatService chatService;
 
     @Autowired
     private ChatInfoLogger chatInfoLogger;
@@ -53,10 +56,10 @@ public class ChatController {
         TicketQueryResponse ticketQueryResponse = new TicketQueryResponse();
         List<AirLine> airLines = Lists.newArrayList();
 
-//        PrintStream utf8Out = new PrintStream(System.out, true, "UTF-8");
-//        utf8Out.println("input: +++++++++++++++" + input);
-//        utf8Out.println("context: +++++++++++++++" + context);
-//        String answer = helloWorld.jniTest(input, Strings.nullToEmpty(context).replaceAll("\\n+", "").replaceAll("\\n\\r+", "").replaceAll("\\r+", "").replaceAll("\\s+", ""));
+        PrintStream utf8Out = new PrintStream(System.out, true, "UTF-8");
+        utf8Out.println("input: +++++++++++++++" + input);
+        utf8Out.println("context: +++++++++++++++" + context);
+        String answer = chatService.chat(input, context);
 //        utf8Out.println("answer:  " + answer + "++++++++++++++++++++++++++++");
 //        if (answer.contains(TICKET_QUERY_FLAG) && answer.indexOf("<ChatStateContainer>") > answer.indexOf(TICKET_QUERY_FLAG)) {
 //            utf8Out.println("fetch+++++++++++++++++++++");
@@ -90,8 +93,7 @@ public class ChatController {
 //        }
 //        int indexOfContext = setContext(session, answer);
 //        String userAnswer = getUserAnswer(answer, indexOfContext);
-        String userAnswer = new String("no ticket info".getBytes(), "utf-8");
-        String answer = "answer";
+        String userAnswer = new String(answer.getBytes(), "utf-8");
         chatInfoLogger.logChatHistoryInfo(session.getId(), request.getRemoteAddr(), input, answer, new Date());
         return new TicketAnswer(airLines, userAnswer);
     }

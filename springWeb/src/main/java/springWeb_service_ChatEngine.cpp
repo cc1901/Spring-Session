@@ -1,11 +1,11 @@
-#include "springWeb_controller_HelloWorld.h"
+#include "springWeb_service_ChatEngine.h"
 #include "ChatEngine.h"
 #include <string>
 #include <iostream>
 
 aisms::ChatEngine *chatEngine;
 
-JNIEXPORT jstring JNICALL Java_springWeb_controller_HelloWorld_test
+JNIEXPORT jstring JNICALL Java_springWeb_service_ChatEngine_chat
   (JNIEnv *env, jobject obj, jstring text, jstring context){
     const char* textInCache = env->GetStringUTFChars(text, JNI_FALSE);
     const char* contextInCache = env->GetStringUTFChars(context, JNI_FALSE);

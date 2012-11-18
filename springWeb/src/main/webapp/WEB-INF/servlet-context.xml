@@ -16,7 +16,7 @@
     <!-- Scans within the base package of the application for @Components to configure as springWeb.beans -->
     <!-- @Controller, @Service, @Configuration, etc. -->
     <import resource="classpath:beans.xml"/>
-    <import resource="logger-client.xml"/>
+    <import resource="service-context.xml"/>
     <context:component-scan base-package="springWeb.controller"/>
     <context:annotation-config/>
     <bean class="config.ApplicationConfig"/>
@@ -34,8 +34,6 @@
 
 
     <bean id="homeService" class="springWeb.service.HomeService"/>
-
-    <bean id="helloWorld"  class="springWeb.controller.HelloWorld"/>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
             <property name="cache" value="false"/>

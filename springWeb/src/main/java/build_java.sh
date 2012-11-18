@@ -1,2 +1,2 @@
-javac springWeb/controller/HelloWorld.java
-javah springWeb.controller.HelloWorld
+javac springWeb/service/ChatEngine.java
+javah springWeb.service.ChatEngine

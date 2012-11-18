@@ -1,4 +1,4 @@
-g++  -DTIXML_USE_STL -DOS_LINUX -D__cplusplus -fPIC -D_CHAT_LOG -I /usr/lib/jvm/java-6-sun-1.6.0.35/include/linux/ -I /var/local/oab/src/x64-jdk/include/ -I /System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Headers -I /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers -c springWeb_controller_HelloWorld.cpp -o HelloWorld.o
+g++  -DTIXML_USE_STL -DOS_LINUX -D__cplusplus -fPIC -D_CHAT_LOG -I /usr/lib/jvm/java-6-sun-1.6.0.35/include/linux/ -I /var/local/oab/src/x64-jdk/include/ -I /System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Headers -c springWeb_service_ChatEngine.cpp -o JniChatEngine.o
 
 
-g++  -shared -DTIXML_USE_STL -DOS_LINUX -D__cplusplus -fPIC   -D_CHAT_LOG -o libhelloworld.so HelloWorld.o ../BasicSearch/libBasicSearch.a ../MixParser/libMixParser.a ../SemanticEngine/libSemanticEngine.a ../DynamicParser/libDynamicParser.a ../Common/tinyxml/libTinyXml.a ../WordNetwork/libWordNetwork.a ../StaticParser/libStaticParser.a -lpthread
+g++  -shared -DTIXML_USE_STL -DOS_LINUX -D__cplusplus -fPIC -D_CHAT_LOG -o libhelloworld.so JniChatEngine.o ../BasicSearch/libBasicSearch.a ../MixParser/libMixParser.a ../SemanticEngine/libSemanticEngine.a ../DynamicParser/libDynamicParser.a ../Common/tinyxml/libTinyXml.a ../WordNetwork/libWordNetwork.a ../StaticParser/libStaticParser.a -lpthread
