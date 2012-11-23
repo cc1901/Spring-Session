@@ -1,14 +1,10 @@
 package springWeb.airTicket;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -24,7 +20,6 @@ public class TicketQueryParserTest {
     public void should_parser_ticket_query() throws IOException {
         TicketQueryParser ticketQueryParser = new TicketQueryParser();
         TicketQuery ticketQuery = ticketQueryParser.parse("{\"criteria\":{\"departure\":\"PEK\",\"destination\":\"Xi'an\",\"departureDate\":\"2012-12-13\"},\"sortBy\":\"mostCheap\",\"filter\":[\"<filter1>\",\"<filter2>\"]}");
-
         assertThat(ticketQuery.getCriteria(), is(new Criteria("PEK", "Xi'an", "2012-12-13")));
         assertThat(ticketQuery.getCriteria().getDeparture(), is("PEK"));
         assertThat(ticketQuery.getCriteria().getDestination(), is("Xi'an"));
@@ -32,6 +27,38 @@ public class TicketQueryParserTest {
         assertThat(ticketQuery.getSortBy(), is("mostCheap"));
         assertThat(ticketQuery.getFilter().get(0), is("<filter1>"));
         assertThat(ticketQuery.getFilter().get(1), is("<filter2>"));
+    }
+
+    @Test
+    public void should() throws IOException {
+        TicketQueryParser ticketQueryParser = new TicketQueryParser();
+        TicketQuery ticketQuery = ticketQueryParser.parse("{\n" +
+                "        \"criteria\" : {\n" +
+                "                \"departure\" : \"PEK\",\n" +
+                "                \"departureDate\" : \"2012-11-20\",\n" +
+                "                \"destination\" : \"SHA\"\n" +
+                "        },\n" +
+                "        \"sortBy\" : \"price\",\n" +
+                "        \"filter\" : [\n" +
+                "                {\n" +
+                "                        \"arriveTime\" : \"\"\n" +
+                "                },\n" +
+                "                {\n" +
+                "                        \"company\" : \"\"\n" +
+                "                },\n" +
+                "                {\n" +
+                "                        \"departureTime\" : \"\"\n" +
+                "                },\n" +
+                "                {\n" +
+                "                        \"discount\" : \"\"\n" +
+                "                },\n" +
+                "                {\n" +
+                "                        \"price\" : \"\"\n" +
+                "                }\n" +
+                "        ]\n" +
+                "}");
+
+
     }
 
     @Test

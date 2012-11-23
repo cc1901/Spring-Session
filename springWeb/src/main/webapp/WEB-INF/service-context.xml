@@ -6,7 +6,15 @@
     <bean id="chatInfoLogger" class="springWeb.service.ChatInfoLogger">
         <constructor-arg name="logServerUrl" value="http://localhost:9000/log-user-info"/>
     </bean>
-    <bean id="chatEngine"  class="springWeb.service.ChatEngine"/>
+
+    <bean id="chatEngine" class="springWeb.service.ChatEngine">
+        <constructor-arg name="configFile" value="data/root.conf"/>
+    </bean>
+
+    <bean id="welcomeSentence" class="springWeb.service.WelcomeSentence">
+        <constructor-arg name="welcomeSentence" value="您好，我是9588在线客服机器人。我能帮您预定机票和解答乘坐飞机的常见问题。请问您的出发地，目的地还有出发时间是？"/>
+    </bean>
+
     <bean id="chatService" class="springWeb.service.ChatService">
         <constructor-arg ref="chatEngine"/>
     </bean>

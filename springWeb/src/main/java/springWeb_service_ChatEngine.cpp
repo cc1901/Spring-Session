@@ -19,13 +19,32 @@ JNIEXPORT jstring JNICALL Java_springWeb_service_ChatEngine_chat
 
 JNIEXPORT jint JNICALL JNI_OnLoad( JavaVM *vm, void *pvt ){
         std::cout<<"************************************* JNI_OnLoad called\n";
+
+        JNIEnv *env;
+        jint onLoad_err = -1;
+        if(vm->GetEnv((void**) &env, JNI_VERSION_1_6) != JNI_OK){
+           return onLoad_err;
+        }
+        if (env == NULL) {
+           return onLoad_err;
+        }
+        jclass javaChatEngine = env->FindClass("springWeb/service/ChatEngine");
+        jmethodID mid = env->GetStaticMethodID(javaChatEngine, "configFile", "()Ljava/lang/String;");
+        if (env->ExceptionCheck()) {
+           return onLoad_err;
+        }
+        jstring configFile = (jstring)env->CallStaticObjectMethod(javaChatEngine, mid);
+        if (env->ExceptionCheck()) {
+           return onLoad_err;
+        }
+        const char* configFileString = env->GetStringUTFChars(configFile, 0);
+        std::cout<<"config file: "<<configFileString<<"=====================\n";
         chatEngine = new aisms::ChatEngine();
-        chatEngine->init("aisms.conf");
-        return JNI_VERSION_1_1;
+        chatEngine->init(configFileString);
+        return JNI_VERSION_1_6;
   }
 
-JNIEXPORT void JNICALL JNI_OnUnload( JavaVM *vm, void *pvt )
-        {
+JNIEXPORT void JNICALL JNI_OnUnload( JavaVM *vm, void *pvt ){
         delete chatEngine;
         std::cout<<"************************************* JNI_OnUnload called\n";
   }

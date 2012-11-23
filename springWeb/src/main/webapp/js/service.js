@@ -154,7 +154,7 @@ $(function() {
                 return date.toDateString();
             };
 
-            $('#main-left .grid-box').append($(formatContent(responseForReviewTemplate, '您好，我是9588在线客服机器人。我能帮您预定机票和解答乘坐飞机的常见问题。请问您的出发地，目的地还有出发时间是？')));
+            $('#main-left .grid-box').append($(formatContent(responseForReviewTemplate, $('.welcome-sentence').text())));
 
             var chat = function() {
                 var input = $('#talk-input').val();
@@ -187,11 +187,11 @@ $(function() {
             };
 
             var sendQuestion = function(requestData) {
-                $.get('/chat-engine/talk', requestData, function(data) {
+                $.get(chatUrl, requestData, function(data) {
                     var answer = getAnswer(data);
                     $('#main-left .grid-box').append($(formatContent(responseHistoryTemplate, answer)));
+                    self._gridbox.autoScroll();
                 });
-                self._gridbox.autoScroll();
             };
 
             var getAnswer = function(data) {

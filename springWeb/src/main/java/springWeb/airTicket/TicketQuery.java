@@ -1,12 +1,18 @@
 package springWeb.airTicket;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import java.util.List;
 
 public class TicketQuery {
-    private String sortBy;
-    private List<String> filter;
-
+    @JsonProperty("criteria")
     private Criteria criteria = new Criteria();
+
+    @JsonProperty("sortBy")
+    private String sortBy;
+
+    @JsonProperty("filter")
+    private List<String> filter;
 
     public Criteria getCriteria() {
         return criteria;

@@ -61,8 +61,10 @@
             <!--right end-->
         </div>
     </div>
+    <div class="welcome-sentence">${welcomeSentence}</div>
 </body>
 </html>
 <script src="js/jquery-1.7.custom.min.js"></script>
+<script src="js/chat-url.js" type="text/javascript"></script>
 <script src="js/service.js" type="text/javascript"></script>
 <script src="js/send.js"></script>

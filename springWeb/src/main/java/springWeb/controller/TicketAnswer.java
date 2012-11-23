@@ -6,7 +6,6 @@ import java.util.List;
 
 public class TicketAnswer {
     private List<AirLine> airLines;
-
     private String userAnswer;
 
     public TicketAnswer(List<AirLine> airLines, String userAnswer) {

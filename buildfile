@@ -43,6 +43,7 @@ SPRING = struct(
 JSON_VERSION = "1.9.9"
 JSON = group("jackson-core-asl", "jackson-mapper-asl", :under => 'org.codehaus.jackson', :version => JSON_VERSION)
 
+
 XML = struct(
     :xml_jackson_core => transitive("com.fasterxml.jackson.core:jackson-core:jar:2.0.6"),
     :xml_jackson_data_bind => transitive("com.fasterxml.jackson.core:jackson-databind:jar:2.0.6"),
@@ -67,8 +68,8 @@ JETTY_REQUIRES = ["org.mortbay.jetty:jetty:jar:#{JETTY_VERSION}", "org.mortbay.j
 JERSEY_VERSION = "1.10"
 JERSEY = struct(
     :client => transitive("com.sun.jersey:jersey-client:jar:#{JERSEY_VERSION}"),
-    :core => transitive("com.sun.jersey:jersey-core:jar:#{JERSEY_VERSION}"),
-    :json => transitive("com.sun.jersey:jersey-json:jar:#{JERSEY_VERSION}"),
+    :jersey_core => transitive("com.sun.jersey:jersey-core:jar:#{JERSEY_VERSION}"),
+    :jersey_json => transitive("com.sun.jersey:jersey-json:jar:#{JERSEY_VERSION}"),
     :apache => transitive("com.sun.jersey.contribs:jersey-apache-client:jar:#{JERSEY_VERSION}")
 )
 

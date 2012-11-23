@@ -25,7 +25,7 @@ public class HomeController {
     @Autowired
     private HomeService homeService;
 
-    @RequestMapping("/test")
+    @RequestMapping("/test1")
     public void index(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
 //        HttpSession session = request.getSession(true);
 //        System.out.println("++++++++++++++++++++++++++++++++++++++++++++" + sessionBean.getState());

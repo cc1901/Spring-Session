@@ -1,12 +1,19 @@
 package springWeb.airTicket;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 public class Criteria {
     public Criteria() {
 
     }
 
+    @JsonProperty("departure")
     private String departure;
+
+    @JsonProperty("destination")
     private String destination;
+
+    @JsonProperty("departureDate")
     private String departureDate;
 
     public Criteria(String departure, String destination, String departureDate) {
