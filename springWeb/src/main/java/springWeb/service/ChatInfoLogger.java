@@ -1,10 +1,8 @@
 package springWeb.service;
 
 import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.config.ClientConfig;
-import com.sun.jersey.api.json.JSONConfiguration;
 import com.sun.jersey.client.apache.ApacheHttpClient;
-import com.sun.jersey.client.apache.config.DefaultApacheHttpClientConfig;
+import springWeb.util.Client;
 import springWeb.util.FullDateTimeFormator;
 
 import javax.ws.rs.core.MediaType;
@@ -21,7 +19,7 @@ public class ChatInfoLogger {
     public void logChatHistoryInfo(String sessionId, String ip, String question, String answer, Date dateTime) {
         try {
             String userInfoJson = getUserInfoJson(sessionId, ip, question, answer, dateTime);
-            ApacheHttpClient client = createRESTFulClient();
+            ApacheHttpClient client = new Client().createRESTFulClient();
             ClientResponse response = client.resource(logServerUrl).type(MediaType.APPLICATION_JSON).post(ClientResponse.class, userInfoJson);
         } catch (Exception e) {
             e.printStackTrace();
@@ -32,9 +30,4 @@ public class ChatInfoLogger {
         return String.format(USER_INFO_JSON_TEMPLATE, ip, sessionId, question, answer, FullDateTimeFormator.format(dateTime));
     }
 
-    private ApacheHttpClient createRESTFulClient() {
-        ClientConfig clientConfig = new DefaultApacheHttpClientConfig();
-        clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
-        return ApacheHttpClient.create(clientConfig);
-    }
 }

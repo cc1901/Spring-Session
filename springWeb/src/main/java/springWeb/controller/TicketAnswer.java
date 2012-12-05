@@ -6,18 +6,24 @@ import java.util.List;
 
 public class TicketAnswer {
     private List<AirLine> airLines;
-    private String userAnswer;
+    private String userAnswerPrefix;
+    private String userAnswerSuffix;
 
-    public TicketAnswer(List<AirLine> airLines, String userAnswer) {
+    public TicketAnswer(List<AirLine> airLines, String userAnswerPrefix, String userAnswerSuffix) {
         this.airLines = airLines;
-        this.userAnswer = userAnswer;
+        this.userAnswerPrefix = userAnswerPrefix;
+        this.userAnswerSuffix = userAnswerSuffix;
+    }
+
+    public String getUserAnswerSuffix() {
+        return userAnswerSuffix;
     }
 
     public List<AirLine> getAirLines() {
         return airLines;
     }
 
-    public String getUserAnswer() {
-        return userAnswer;
+    public String getUserAnswerPrefix() {
+        return userAnswerPrefix;
     }
 }

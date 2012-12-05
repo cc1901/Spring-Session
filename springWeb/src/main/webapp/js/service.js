@@ -195,11 +195,10 @@ $(function() {
             };
 
             var getAnswer = function(data) {
-                var answer = data.userAnswer;
-                if (data.userAnswer == 'no ticket info') {
-                    answer = '没有相关的机票信息';
-                    return answer;
+                if (data.userAnswerPrefix == 'no ticket info') {
+                    return '建议:你查询的航班可能没有直达航班，请拨打400-818-9588人工查询。';
                 }
+                var answer = data.userAnswerPrefix;
                 var airLines = data.airLines;
                 if (airLines.length > 0) {
                     $.each(airLines, function(index) {
@@ -212,6 +211,7 @@ $(function() {
                         answer += "     到达机场：" + airportMapping[airLines[index].dstAirport];
                     });
                 }
+                answer += data.userAnswerSuffix;
                 return answer;
             }
 

@@ -14,10 +14,10 @@ import static org.junit.Assert.assertThat;
 public class TicketAnswerTest {
     @Test
     public void should_to_json() throws IOException {
-        TicketAnswer ticketAnswer = new TicketAnswer(Lists.<AirLine>newArrayList(), "user answer");
+        TicketAnswer ticketAnswer = new TicketAnswer(Lists.<AirLine>newArrayList(), "user answer prefix", "user answer suffix");
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectMapper mapper = new ObjectMapper();
         mapper.getSerializationConfig().setAnnotationIntrospector(new JacksonAnnotationIntrospector());
-        assertThat(mapper.writeValueAsString(ticketAnswer), is("{\"airLines\":[],\"userAnswer\":\"user answer\"}"));
+        assertThat(mapper.writeValueAsString(ticketAnswer), is("{\"airLines\":[],\"userAnswerPrefix\":\"user answer prefix\",\"userAnswerSuffix\":\"user answer suffix\"}"));
     }
 }

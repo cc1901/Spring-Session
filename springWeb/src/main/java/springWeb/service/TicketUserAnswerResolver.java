@@ -37,34 +37,48 @@ public class TicketUserAnswerResolver {
             TicketQuery ticketQuery = ticketQueryParser.parse(query);
             TicketInformationFetcher ticketInformationFetcher = new TicketInformationFetcher();
             ticketQueryResponse = ticketInformationFetcher.fetch(ticketQuery.getCriteria());
-            if (ticketQueryResponse.getLinesCollection() == null) {
-                this.contextResolver.setContext(answer);
+            if (noAirTicketInfo(ticketQueryResponse)) {
                 String userAnswer = new String("no ticket info");
-                return new TicketAnswer(airLines, userAnswer);
+                this.contextResolver.setContext(answer);
+                return new TicketAnswer(airLines, userAnswer, "");
             }
-            airLines = ticketQueryResponse.getLinesCollection().getLines().getAirLines();
-
-            for (AirLine airLine : airLines) {
-                airLine.calculatePrice();
-            }
-            TicketSorter.sort(airLines, ticketQuery);
-            airLines = airLines.subList(0, Math.min(airLines.size() - 1, 5));
-
+            List<AirLine> queriedAirLines = ticketQueryResponse.getLinesCollection().getLines().getAirLines();
+            airLines = airTicketsAfterProcess(airLines, ticketQuery, queriedAirLines);
         }
         int indexOfContext = this.contextResolver.setContext(answer);
-        String userAnswer = getUserAnswer(answer, indexOfContext);
-        return new TicketAnswer(airLines, userAnswer);
+        return getTicketAnswer(answer, airLines, indexOfContext);
     }
 
-    private String getUserAnswer(String answer, int indexOfContext) {
+    private TicketAnswer getTicketAnswer(String answer, List<AirLine> airLines, int indexOfContext) {
         String userAnswer = answer;
+        String userAnswerPrefix = "";
+        String userAnswerSuffix = "";
         if (indexOfContext >= 0) {
             userAnswer = answer.substring(0, indexOfContext);
         }
         if (hasQuery(answer)) {
-            userAnswer = answer.substring(answer.indexOf(BREAK) + (BREAK).length(), indexOfContext);
+            userAnswerSuffix = userAnswer.substring(userAnswer.indexOf(BREAK) + (BREAK).length());
+            userAnswerPrefix = userAnswer.substring(0, userAnswer.indexOf(TICKET_QUERY_FLAG));
+            return new TicketAnswer(airLines, userAnswerPrefix, userAnswerSuffix);
         }
-        return userAnswer;
+        return new TicketAnswer(airLines, userAnswer, userAnswerSuffix);
+    }
+
+    private boolean noAirTicketInfo(TicketQueryResponse ticketQueryResponse) {
+        return ticketQueryResponse.getLinesCollection() == null ||
+                ticketQueryResponse.getLinesCollection().getLines() == null ||
+                ticketQueryResponse.getLinesCollection().getLines().getAirLines() == null;
+    }
+
+    private List<AirLine> airTicketsAfterProcess(List<AirLine> airLines, TicketQuery ticketQuery, List<AirLine> queriedAirLines) {
+        airLines = queriedAirLines;
+
+        for (AirLine airLine : airLines) {
+            airLine.calculatePrice();
+        }
+        TicketSorter.sort(airLines, ticketQuery);
+        airLines = airLines.subList(0, Math.min(airLines.size() - 1, 5));
+        return airLines;
     }
 
     private boolean hasQuery(String answer) {

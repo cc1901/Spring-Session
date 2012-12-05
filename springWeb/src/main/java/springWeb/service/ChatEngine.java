@@ -1,6 +1,6 @@
 package springWeb.service;
 
-public class ChatEngine {
+public class ChatEngine implements ChatEngineInterface {
     private static String configFile;
 
     public ChatEngine(String configFile) {
