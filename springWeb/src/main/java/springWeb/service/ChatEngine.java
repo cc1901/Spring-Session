@@ -1,6 +1,10 @@
 package springWeb.service;
 
+import springWeb.domain.ChatResponse;
+
 public class ChatEngine implements ChatEngineInterface {
+    public static final String CONTEXT_CONTAINER = "<ChatStateContainer>";
+    public static final String CONTEXT_CONTAINER_END = "</ChatStateContainer>";
     private static String configFile;
 
     public ChatEngine(String configFile) {
@@ -29,5 +33,16 @@ public class ChatEngine implements ChatEngineInterface {
 
     public String chatWithEngine(String text, String context) {
         return chat(text, context);
+    }
+
+    @Override
+    public ChatResponse chatWithEngine1(String input, String context) {
+        String chatEngineAnswer = chat(input, context);
+        int indexOfContext = chatEngineAnswer.indexOf(CONTEXT_CONTAINER);
+        int indexOfContextEnd = chatEngineAnswer.indexOf(CONTEXT_CONTAINER_END);
+        int startOfNewContext = indexOfContext + CONTEXT_CONTAINER.length();
+        String newContext = chatEngineAnswer.substring(startOfNewContext, indexOfContextEnd);
+        String answer = chatEngineAnswer.substring(0, indexOfContext);
+        return new ChatResponse(answer, newContext);
     }
 }

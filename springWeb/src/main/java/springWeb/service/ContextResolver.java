@@ -23,6 +23,10 @@ public class ContextResolver {
         return indexOfContext;
     }
 
+    void setContextInCookie(String newContext) {
+        this.session.setAttribute(CONTEXT, newContext);
+    }
+
     public String getContext() {
         return (String) session.getAttribute(CONTEXT);
     }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import springWeb.airTicket.TicketInformationFetcher;
+import springWeb.domain.ChatResponse;
 import springWeb.service.*;
 import springWeb.util.Utf8Logger;
 
@@ -53,11 +54,11 @@ public class ChatController {
         String context = contextResolver.getContext();
         utf8Logger.printLog("input: +++++++++++++++" + input);
         utf8Logger.printLog("context: +++++++++++++++" + context);
-        String answer = chatService.chat(input, context);
-        utf8Logger.printLog("answer:  " + answer + "++++++++++++++++++++++++++++");
+        ChatResponse chatResponse = chatService.chat1(input, context);
+        utf8Logger.printLog("answer:  " + chatResponse.getAnswer() + "++++++++++++++++++++++++++++");
 //        String userAnswer = new String(answer.getBytes(), "utf-8");
-        chatInfoLogger.logChatHistoryInfo(session.getId(), request.getRemoteAddr(), input, answer, new Date());
-        return new TicketUserAnswerResolver(contextResolver).getTicketAnswer(answer);
+        chatInfoLogger.logChatHistoryInfo(session.getId(), request.getRemoteAddr(), input, chatResponse.getAnswer(), new Date());
+        return new TicketUserAnswerResolver(contextResolver).getTicketAnswer(chatResponse.getAnswer(), chatResponse.getContext());
     }
 
     @RequestMapping(value = "/clear-session")

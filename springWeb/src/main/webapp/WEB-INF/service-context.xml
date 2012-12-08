@@ -8,7 +8,11 @@
     </bean>
 
     <bean id="chatEngine" class="springWeb.service.ChatEngine">
-        <constructor-arg name="configFile" value="data/root.conf"/>
+    <constructor-arg name="configFile" value="data/root.conf"/>
+    </bean>
+
+    <bean id="chatEngine1" class="springWeb.service.ChatEngineRemote">
+        <property name="chatServerUrl" value="http://127.0.0.1:9002/chat"/>
     </bean>
 
     <bean id="welcomeSentence" class="springWeb.service.WelcomeSentence">
@@ -16,6 +20,6 @@
     </bean>
 
     <bean id="chatService" class="springWeb.service.ChatService">
-        <constructor-arg ref="chatEngine"/>
+        <constructor-arg ref="chatEngine1"/>
     </bean>
 </beans>

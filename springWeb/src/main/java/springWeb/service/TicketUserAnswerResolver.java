@@ -15,7 +15,6 @@ import java.util.List;
 public class TicketUserAnswerResolver {
     private static final String TICKET_QUERY_FLAG = "<$query$>";
     public static final String BREAK = "<$break$>";
-    public static final String CHAT_CONTEXT_CONTAINER = "<ChatStateContainer>";
     private Utf8Logger utf8Logger = new Utf8Logger();
     private ContextResolver contextResolver;
 
@@ -23,15 +22,16 @@ public class TicketUserAnswerResolver {
         this.contextResolver = contextResolver;
     }
 
-    public TicketAnswer getTicketAnswer(String answer) throws IOException {
+    public TicketAnswer getTicketAnswer(String answer, String context) throws IOException {
+        utf8Logger.printLog("answer:============" + answer);
+        utf8Logger.printLog("context:===========" + context);
         List<AirLine> airLines = Lists.newArrayList();
+        this.contextResolver.setContextInCookie(context);
         if (hasQuery(answer)) {
             TicketQueryResponse ticketQueryResponse = new TicketQueryResponse();
             utf8Logger.printLog("fetch+++++++++++++++++++++");
-            int queryStart = answer.indexOf(TICKET_QUERY_FLAG) + TICKET_QUERY_FLAG.length();
-            int queryEnd = answer.indexOf(BREAK);
-            String query = answer.substring(queryStart, queryEnd);
-            utf8Logger.printLog(query);
+            String query = getQuery(answer);
+            utf8Logger.printLog("query: " + query);
             utf8Logger.printLog("+++++++++++++++++++++++++++");
             TicketQueryParser ticketQueryParser = new TicketQueryParser();
             TicketQuery ticketQuery = ticketQueryParser.parse(query);
@@ -39,23 +39,24 @@ public class TicketUserAnswerResolver {
             ticketQueryResponse = ticketInformationFetcher.fetch(ticketQuery.getCriteria());
             if (noAirTicketInfo(ticketQueryResponse)) {
                 String userAnswer = new String("no ticket info");
-                this.contextResolver.setContext(answer);
                 return new TicketAnswer(airLines, userAnswer, "");
             }
             List<AirLine> queriedAirLines = ticketQueryResponse.getLinesCollection().getLines().getAirLines();
             airLines = airTicketsAfterProcess(airLines, ticketQuery, queriedAirLines);
         }
-        int indexOfContext = this.contextResolver.setContext(answer);
-        return getTicketAnswer(answer, airLines, indexOfContext);
+        return getTicketAnswer(answer, airLines);
     }
 
-    private TicketAnswer getTicketAnswer(String answer, List<AirLine> airLines, int indexOfContext) {
+    private String getQuery(String answer) {
+        int queryStart = answer.indexOf(TICKET_QUERY_FLAG) + TICKET_QUERY_FLAG.length();
+        int queryEnd = answer.indexOf(BREAK);
+        return answer.substring(queryStart, queryEnd);
+    }
+
+    private TicketAnswer getTicketAnswer(String answer, List<AirLine> airLines) {
         String userAnswer = answer;
         String userAnswerPrefix = "";
         String userAnswerSuffix = "";
-        if (indexOfContext >= 0) {
-            userAnswer = answer.substring(0, indexOfContext);
-        }
         if (hasQuery(answer)) {
             userAnswerSuffix = userAnswer.substring(userAnswer.indexOf(BREAK) + (BREAK).length());
             userAnswerPrefix = userAnswer.substring(0, userAnswer.indexOf(TICKET_QUERY_FLAG));
@@ -82,7 +83,7 @@ public class TicketUserAnswerResolver {
     }
 
     private boolean hasQuery(String answer) {
-        return answer.contains(TICKET_QUERY_FLAG) && answer.indexOf(CHAT_CONTEXT_CONTAINER) > answer.indexOf(TICKET_QUERY_FLAG);
+        return answer.contains(TICKET_QUERY_FLAG);
     }
 
 }
