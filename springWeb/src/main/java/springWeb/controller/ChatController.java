@@ -58,7 +58,10 @@ public class ChatController {
         utf8Logger.printLog("answer:  " + chatResponse.getAnswer() + "++++++++++++++++++++++++++++");
 //        String userAnswer = new String(answer.getBytes(), "utf-8");
         chatInfoLogger.logChatHistoryInfo(session.getId(), request.getRemoteAddr(), input, chatResponse.getAnswer(), new Date());
-        return new TicketUserAnswerResolver(contextResolver).getTicketAnswer(chatResponse.getAnswer(), chatResponse.getContext());
+        contextResolver.setContextInCookie(chatResponse.getContext());
+        utf8Logger.printLog("answer:============" + chatResponse.getAnswer());
+        utf8Logger.printLog("context:===========" + chatResponse.getContext());
+        return new TicketUserAnswerResolver().getTicketAnswer(chatResponse.getAnswer());
     }
 
     @RequestMapping(value = "/clear-session")

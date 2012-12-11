@@ -16,17 +16,12 @@ public class TicketUserAnswerResolver {
     private static final String TICKET_QUERY_FLAG = "<$query$>";
     public static final String BREAK = "<$break$>";
     private Utf8Logger utf8Logger = new Utf8Logger();
-    private ContextResolver contextResolver;
 
-    public TicketUserAnswerResolver(ContextResolver contextResolver) {
-        this.contextResolver = contextResolver;
+    public TicketUserAnswerResolver() {
     }
 
-    public TicketAnswer getTicketAnswer(String answer, String context) throws IOException {
-        utf8Logger.printLog("answer:============" + answer);
-        utf8Logger.printLog("context:===========" + context);
+    public TicketAnswer getTicketAnswer(String answer) throws IOException {
         List<AirLine> airLines = Lists.newArrayList();
-        this.contextResolver.setContextInCookie(context);
         if (hasQuery(answer)) {
             TicketQueryResponse ticketQueryResponse = new TicketQueryResponse();
             utf8Logger.printLog("fetch+++++++++++++++++++++");
