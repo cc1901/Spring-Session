@@ -1,4 +1,4 @@
-package springWeb.controller;
+package springWeb.domain;
 
 import springWeb.airTicket.response.model.AirLine;
 

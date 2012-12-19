@@ -5,6 +5,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.introspect.JacksonAnnotationIntrospector;
 import org.junit.Test;
 import springWeb.airTicket.response.model.AirLine;
+import springWeb.domain.TicketAnswer;
 
 import java.io.IOException;
 

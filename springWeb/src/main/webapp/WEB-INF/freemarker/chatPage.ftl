@@ -61,6 +61,26 @@
             <!--right end-->
         </div>
     </div>
+    <div id="tccdiv">
+            <table width="700" border="0" align="center" cellpadding="0" cellspacing="0" class="tcc">
+                <tr class="trtitle">
+                    <td width="669" id="a_title" class="born">
+                        文章标题
+                    </td>
+                    <td width="29" class="born">
+                        <a href="javascript:void(0);" id="a_close">
+                            <img src="images/close.gif" border="0" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" valign="top">
+                        <div id="a_content">
+                            <p>
+                                正文内容</p>
+                            <p>
+                                正文内容</p>
+                    </td>
+        </div>
     <div class="welcome-sentence">${welcomeSentence}</div>
 </body>
 </html>

@@ -7,9 +7,9 @@
         <constructor-arg name="logServerUrl" value="http://localhost:9000/log-user-info"/>
     </bean>
 
-    <bean id="chatEngine" class="springWeb.service.ChatEngine">
-    <constructor-arg name="configFile" value="data/root.conf"/>
-    </bean>
+    <!--<bean id="chatEngine" class="springWeb.service.ChatEngine">-->
+    <!--<constructor-arg name="configFile" value="data/root.conf"/>-->
+    <!--</bean>-->
 
     <bean id="chatEngine1" class="springWeb.service.ChatEngineRemote">
         <property name="chatServerUrl" value="http://127.0.0.1:9002/chat"/>

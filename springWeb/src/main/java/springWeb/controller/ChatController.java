@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import springWeb.airTicket.TicketInformationFetcher;
 import springWeb.domain.ChatResponse;
+import springWeb.domain.TicketAnswer;
 import springWeb.service.*;
 import springWeb.util.Utf8Logger;
 

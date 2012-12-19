@@ -25,7 +25,7 @@ a:hover{color:#000;text-decoration:underline;}
     position:relative;
     overflow:hidden;
     zoom:1;
-    overflow-y: auto; 
+    overflow-y: auto;
     scrollbar-face-color: #F8FBFE;
     scrollbar-highlight-color: #B9C1D1;
     scrollbar-shadow-color: #B9C1D1;
@@ -212,3 +212,16 @@ a:hover{color:#000;text-decoration:underline;}
     display: none;
 }
 
+/* 查询表格样式 */
+.cxjg,.cxjg td{ border-collapse:collapse; border:1px solid #cdd8e8;}
+.cxjg td{ height:30px; padding:2px;}
+.cxjg .trtitle{ background-color:#e0e7f0; color:#345e96; font-weight:bold; text-align:center; line-height:30px;}
+.cxjg a,.cxjg a:hover{ color:#0f86e7; text-decoration:underline;}
+/* 弹出层样式 */
+#tccdiv{position:absolute;z-index:9999;background-color:White; display:none;}
+.tcc .trtitle{ height:30px; background-color:#e0e7f0; color:#345e96; font-weight:bold; text-align:center; line-height:30px;}
+.tcc,.tcc td{ border-collapse:collapse; border:1px solid #cdd8e8;}
+.tcc td{ padding:2px;}
+.tcc #a_content{padding:10px;height:300px;overflow-y:auto;}
+.tcc p{ text-indent:25px; padding:4px 0;}
+.tcc td.born{ border:none;}

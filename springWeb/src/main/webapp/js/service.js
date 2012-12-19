@@ -2,6 +2,15 @@
  针对机器人客服UI相关的函数
  */
 $(function() {
+    String.prototype.format = function () {
+      var args = arguments;
+      return this.replace(/\{\{|\}\}|\{(\d+)\}/g, function (m, n) {
+        if (m == "{{") { return "{"; }
+        if (m == "}}") { return "}"; }
+        return args[n];
+      });
+    };
+
     function robotService() {
         var self = this;
         //右侧的宽
@@ -145,6 +154,26 @@ $(function() {
                 '</div>' +
                 '</div>';
 
+            var ticketInfoTable = "<table width=\"600px\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" class=\"cxjg\">" +
+                "<tr class=\"trtitle\">" +
+                "<td>航班号</td>" +
+                "<td>票价</td>" +
+                "<td>起飞时间</td>" +
+                "<td>到达时间</td>" +
+                "<td>起飞机场</td>" +
+                "<td>到达机场</td>" +
+                "</tr>{0}" +
+                "</table>";
+
+            var ticketInfoRow = "<tr>" +
+                "<td align=\"center\"><a href=\"#\">{0}</a></td>" +
+                "<td align=\"right\">{1}</td>" +
+                "<td align=\"center\">{2}</td>" +
+                "<td align=\"center\">{3}</td>" +
+                "<td align=\"center\">{4}</td>" +
+                "<td align=\"center\">{5}</td>" +
+                "</tr>";
+
             var formatContent = function(template, content) {
                 return template.replace('$content$', content).replace('$time$', currentTime());
             };
@@ -178,8 +207,7 @@ $(function() {
             };
 
             $('.faq-link').on('click', function() {
-                var input = $(this).text();
-                chatWithServer(input);
+                $(this).ShowDiv();
             });
 
             var showQuestion = function(question) {
@@ -201,15 +229,17 @@ $(function() {
                 var answer = data.userAnswerPrefix;
                 var airLines = data.airLines;
                 if (airLines.length > 0) {
+                    var ticketRows = '';
                     $.each(airLines, function(index) {
-                        answer += "<br>";
-                        answer += "航班号：" + airLines[index].flightNumber;
-                        answer += "     票价：" + airLines[index].price;
-                        answer += "     起飞时间：" + airLines[index].departureDate;
-                        answer += "     到达时间：" + airLines[index].arriveDate;
-                        answer += "     起飞机场：" + airportMapping[airLines[index].orgAirport];
-                        answer += "     到达机场：" + airportMapping[airLines[index].dstAirport];
+                        ticketRows += ticketInfoRow.format(airLines[index].flightNumber,
+                            airLines[index].price,
+                            airLines[index].departureDate,
+                            airLines[index].arriveDate,
+                            airportMapping[airLines[index].orgAirport],
+                            airportMapping[airLines[index].dstAirport]
+                        );
                     });
+                    answer += ticketInfoTable.format(ticketRows);
                 }
                 answer += data.userAnswerSuffix;
                 return answer;
@@ -218,11 +248,20 @@ $(function() {
             $('#chat-btn').on('click', chat);
 
             $('#grid-box').on('click', '.good', function() {
-                $('#main-left .grid-box').append($(formatContent(responseForReviewTemplate, "谢谢您的表扬,我会再接再厉！")));
+                if (!$(this).attr("clicked")) {
+                    $('#main-left .grid-box').append($(formatContent(responseForReviewTemplate, "谢谢您的表扬,我会再接再厉！")));
+                    $(this).attr("clicked", "clicked");
+                    self._gridbox.autoScroll();
+                }
+
             });
 
             $('#grid-box').on('click', '.bad', function() {
-                $('#main-left .grid-box').append($(formatContent(responseForReviewTemplate, "谢谢您的意见，我会勤奋学习改进自己的不足。")));
+                if (!$(this).attr("clicked")) {
+                    $('#main-left .grid-box').append($(formatContent(responseForReviewTemplate, "谢谢您的意见，我会勤奋学习改进自己的不足。")));
+                    $(this).attr("clicked", "clicked");
+                    self._gridbox.autoScroll();
+                }
             });
         }
         //添加F5刷新事件
@@ -247,6 +286,11 @@ $(function() {
             self.serviceEvent();
         }
 
+        //注册文章关闭事件
+        $("#a_close").click(function() {
+            $("#a_Mask").remove();
+            $("#tccdiv").hide();
+        });
 
         var airportMapping = {
             PEK:"北京首都国际机场",
@@ -446,6 +490,32 @@ $(function() {
     var _robotService = new robotService();
     _robotService.serviceInit();
 });
+
+//newscript
+$.fn.ShowDiv = function() {
+    //根据this对象的属性做ajax加载
+    var question = $(this).text();
+    var requestData = { input:question};
+    $.get(chatUrl, requestData, function(data) {
+        var answer = data.userAnswerPrefix + data.userAnswerSuffix;
+        $("#a_title").html(question);
+        $("#a_content").html(answer);
+        var width = $(window).width(),
+            height = $(window).height(),
+            tccdiv = $("#tccdiv"),
+            article_width = tccdiv.width(),
+            article_height = tccdiv.height();
+        $("body").append('<div id="a_Mask" style="position:absolute;left:0px;top:0px;filter:Alpha(Opacity=30);opacity:0.3;background-color:#000000;z-index:99; text-align:center; vertical-align:middle;"></div>');
+        $("#a_Mask").css({
+            width:width,
+            height:height
+        }).show();
+        $("#tccdiv").css({
+            left:(width - article_width) / 2,
+            top:(height - article_height) / 2
+        }).fadeIn();
+    });
+};
 
 $.fn.autoScroll = function(options) {
     var defaults = {

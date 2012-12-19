@@ -6,7 +6,7 @@ import springWeb.airTicket.TicketQuery;
 import springWeb.airTicket.TicketQueryParser;
 import springWeb.airTicket.response.model.AirLine;
 import springWeb.airTicket.response.model.TicketQueryResponse;
-import springWeb.controller.TicketAnswer;
+import springWeb.domain.TicketAnswer;
 import springWeb.util.Utf8Logger;
 
 import java.io.IOException;
