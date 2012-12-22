@@ -2,13 +2,17 @@
  针对机器人客服UI相关的函数
  */
 $(function() {
-    String.prototype.format = function () {
-      var args = arguments;
-      return this.replace(/\{\{|\}\}|\{(\d+)\}/g, function (m, n) {
-        if (m == "{{") { return "{"; }
-        if (m == "}}") { return "}"; }
-        return args[n];
-      });
+    String.prototype.format = function() {
+        var args = arguments;
+        return this.replace(/\{\{|\}\}|\{(\d+)\}/g, function(m, n) {
+            if (m == "{{") {
+                return "{";
+            }
+            if (m == "}}") {
+                return "}";
+            }
+            return args[n];
+        });
     };
 
     function robotService() {
@@ -247,21 +251,22 @@ $(function() {
 
             $('#chat-btn').on('click', chat);
 
-            $('#grid-box').on('click', '.good', function() {
-                if (!$(this).attr("clicked")) {
-                    $('#main-left .grid-box').append($(formatContent(responseForReviewTemplate, "谢谢您的表扬,我会再接再厉！")));
-                    $(this).attr("clicked", "clicked");
+            var evaluate = function(evaluation, answer) {
+                if (!evaluation.attr("clicked")) {
+                    var evaluate = evaluation.parent();
+                    evaluate.empty();
+                    evaluate.append($('<li>' + 'answer' + '</li>'));
+                    evaluation.attr("clicked", "clicked");
                     self._gridbox.autoScroll();
                 }
+            }
 
+            $('#grid-box').on('click', '.good', function() {
+                evaluate($(this), '谢谢您的表扬,我会再接再厉！');
             });
 
             $('#grid-box').on('click', '.bad', function() {
-                if (!$(this).attr("clicked")) {
-                    $('#main-left .grid-box').append($(formatContent(responseForReviewTemplate, "谢谢您的意见，我会勤奋学习改进自己的不足。")));
-                    $(this).attr("clicked", "clicked");
-                    self._gridbox.autoScroll();
-                }
+                evaluate($(this), '谢谢您的意见，我会勤奋学习改进自己的不足。');
             });
         }
         //添加F5刷新事件
