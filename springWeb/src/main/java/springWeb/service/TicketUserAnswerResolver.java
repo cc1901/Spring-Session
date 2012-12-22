@@ -7,6 +7,7 @@ import springWeb.airTicket.TicketQueryParser;
 import springWeb.airTicket.response.model.AirLine;
 import springWeb.airTicket.response.model.TicketQueryResponse;
 import springWeb.domain.TicketAnswer;
+import springWeb.helper.AirLineViewsHelper;
 import springWeb.util.Utf8Logger;
 
 import java.io.IOException;
@@ -34,7 +35,7 @@ public class TicketUserAnswerResolver {
             ticketQueryResponse = ticketInformationFetcher.fetch(ticketQuery.getCriteria());
             if (noAirTicketInfo(ticketQueryResponse)) {
                 String userAnswer = new String("no ticket info");
-                return new TicketAnswer(airLines, userAnswer, "");
+                return new TicketAnswer(AirLineViewsHelper.transferAirLineView(airLines), userAnswer, "");
             }
             List<AirLine> queriedAirLines = ticketQueryResponse.getLinesCollection().getLines().getAirLines();
             airLines = airTicketsAfterProcess(airLines, ticketQuery, queriedAirLines);
@@ -55,9 +56,16 @@ public class TicketUserAnswerResolver {
         if (hasQuery(answer)) {
             userAnswerSuffix = userAnswer.substring(userAnswer.indexOf(BREAK) + (BREAK).length());
             userAnswerPrefix = userAnswer.substring(0, userAnswer.indexOf(TICKET_QUERY_FLAG));
-            return new TicketAnswer(airLines, userAnswerPrefix, userAnswerSuffix);
+            return new TicketAnswer(AirLineViewsHelper.transferAirLineView(airLines), userAnswerPrefix, userAnswerSuffix);
         }
-        return new TicketAnswer(airLines, userAnswer, userAnswerSuffix);
+        return new TicketAnswer(AirLineViewsHelper.transferAirLineView(airLines), userAnswer, userAnswerSuffix);
+    }
+
+    private List<AirLine> updateAirLines(List<AirLine> airLines) {
+        List<AirLine> updatedAirLines = Lists.newArrayList();
+        for (AirLine airLine : airLines) {
+        }
+        return null;
     }
 
     private boolean noAirTicketInfo(TicketQueryResponse ticketQueryResponse) {

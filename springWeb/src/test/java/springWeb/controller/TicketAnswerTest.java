@@ -6,6 +6,7 @@ import org.codehaus.jackson.map.introspect.JacksonAnnotationIntrospector;
 import org.junit.Test;
 import springWeb.airTicket.response.model.AirLine;
 import springWeb.domain.TicketAnswer;
+import springWeb.helper.AirLineViewsHelper;
 
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ import static org.junit.Assert.assertThat;
 public class TicketAnswerTest {
     @Test
     public void should_to_json() throws IOException {
-        TicketAnswer ticketAnswer = new TicketAnswer(Lists.<AirLine>newArrayList(), "user answer prefix", "user answer suffix");
+        TicketAnswer ticketAnswer = new TicketAnswer(AirLineViewsHelper.transferAirLineView(Lists.<AirLine>newArrayList()), "user answer prefix", "user answer suffix");
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectMapper mapper = new ObjectMapper();
         mapper.getSerializationConfig().setAnnotationIntrospector(new JacksonAnnotationIntrospector());

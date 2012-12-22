@@ -166,7 +166,7 @@ $(function() {
                 "</table>";
 
             var ticketInfoRow = "<tr>" +
-                "<td align=\"center\"><a href=\"#\">{0}</a></td>" +
+                "<td align=\"center\"><a target=\"_blank\" href=\"http://www.9588.com\">{0}</a></td>" +
                 "<td align=\"right\">{1}</td>" +
                 "<td align=\"center\">{2}</td>" +
                 "<td align=\"center\">{3}</td>" +

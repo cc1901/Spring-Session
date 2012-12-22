@@ -1,15 +1,17 @@
 package springWeb.domain;
 
 import springWeb.airTicket.response.model.AirLine;
+import springWeb.helper.AirLineViewsHelper;
+import springWeb.view.AirLineView;
 
 import java.util.List;
 
 public class TicketAnswer {
-    private List<AirLine> airLines;
+    private List<AirLineView> airLines;
     private String userAnswerPrefix;
     private String userAnswerSuffix;
 
-    public TicketAnswer(List<AirLine> airLines, String userAnswerPrefix, String userAnswerSuffix) {
+    public TicketAnswer(List<AirLineView> airLines, String userAnswerPrefix, String userAnswerSuffix) {
         this.airLines = airLines;
         this.userAnswerPrefix = userAnswerPrefix;
         this.userAnswerSuffix = userAnswerSuffix;
@@ -19,7 +21,7 @@ public class TicketAnswer {
         return userAnswerSuffix;
     }
 
-    public List<AirLine> getAirLines() {
+    public List<AirLineView> getAirLines() {
         return airLines;
     }
 
