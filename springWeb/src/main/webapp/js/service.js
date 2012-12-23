@@ -255,7 +255,7 @@ $(function() {
                 if (!evaluation.attr("clicked")) {
                     var evaluate = evaluation.parent();
                     evaluate.empty();
-                    evaluate.append($('<li>' + 'answer' + '</li>'));
+                    evaluate.append($('<li>' + answer + '</li>'));
                     evaluation.attr("clicked", "clicked");
                     self._gridbox.autoScroll();
                 }

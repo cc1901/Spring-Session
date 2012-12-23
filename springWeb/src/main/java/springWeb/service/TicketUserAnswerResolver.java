@@ -6,7 +6,7 @@ import springWeb.airTicket.TicketQuery;
 import springWeb.airTicket.TicketQueryParser;
 import springWeb.airTicket.response.model.AirLine;
 import springWeb.airTicket.response.model.TicketQueryResponse;
-import springWeb.domain.TicketAnswer;
+import springWeb.view.TicketAnswer;
 import springWeb.helper.AirLineViewsHelper;
 import springWeb.util.Utf8Logger;
 
@@ -61,13 +61,6 @@ public class TicketUserAnswerResolver {
         return new TicketAnswer(AirLineViewsHelper.transferAirLineView(airLines), userAnswer, userAnswerSuffix);
     }
 
-    private List<AirLine> updateAirLines(List<AirLine> airLines) {
-        List<AirLine> updatedAirLines = Lists.newArrayList();
-        for (AirLine airLine : airLines) {
-        }
-        return null;
-    }
-
     private boolean noAirTicketInfo(TicketQueryResponse ticketQueryResponse) {
         return ticketQueryResponse.getLinesCollection() == null ||
                 ticketQueryResponse.getLinesCollection().getLines() == null ||
@@ -88,5 +81,4 @@ public class TicketUserAnswerResolver {
     private boolean hasQuery(String answer) {
         return answer.contains(TICKET_QUERY_FLAG);
     }
-
 }

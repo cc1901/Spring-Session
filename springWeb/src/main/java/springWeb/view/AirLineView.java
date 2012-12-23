@@ -1,6 +1,7 @@
 package springWeb.view;
 
 import com.google.common.base.Strings;
+import org.codehaus.jackson.annotate.JsonProperty;
 import springWeb.airTicket.response.model.Cabin;
 
 import java.util.List;
@@ -24,37 +25,44 @@ public class AirLineView {
         this.dstAirport = dstAirport;
     }
 
+    @JsonProperty
     public List<Cabin> getCabins() {
         return cabins;
     }
 
+    @JsonProperty
     public String getPrice() {
         return price;
     }
 
+    @JsonProperty
     public String getFlightNumber() {
         return flightNumber;
     }
 
+    @JsonProperty
     public String getArriveDate() {
         return arriveDate;
     }
 
+    @JsonProperty
     public String getDepartureDate() {
         return departureDate;
     }
 
+    @JsonProperty
     public String getOrgAirport() {
         return orgAirport;
     }
 
+    @JsonProperty
     public String getDstAirport() {
         return dstAirport;
     }
 
-    private String formatPrice(String price) {
-        String priceInt = price.replaceAll("\\.\\d+", "");
-        return priceInt + "元";
+    private String formatPrice(String orgPrice) {
+        String priceInt = orgPrice.replaceAll("\\.\\d+", "");
+        return priceInt + "\u5143";
     }
 
     String formatDate(String date) {

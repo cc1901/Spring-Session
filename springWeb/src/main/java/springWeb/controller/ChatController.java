@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import springWeb.airTicket.TicketInformationFetcher;
 import springWeb.domain.ChatResponse;
-import springWeb.domain.TicketAnswer;
+import springWeb.view.TicketAnswer;
 import springWeb.service.*;
 import springWeb.util.Utf8Logger;
 
@@ -44,7 +44,7 @@ public class ChatController {
         return "chatPage";
     }
 
-    @RequestMapping(value = "/talk", produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/talk", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public TicketAnswer talk(
             @RequestParam(value = "input", required = true) String input,
