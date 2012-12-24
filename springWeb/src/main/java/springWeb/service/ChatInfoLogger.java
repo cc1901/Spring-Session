@@ -4,6 +4,7 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.client.apache.ApacheHttpClient;
 import springWeb.util.Client;
 import springWeb.util.FullDateTimeFormator;
+import springWeb.util.Utf8Logger;
 
 import javax.ws.rs.core.MediaType;
 import java.util.Date;
@@ -19,6 +20,7 @@ public class ChatInfoLogger {
     public void logChatHistoryInfo(String sessionId, String ip, String question, String answer, Date dateTime) {
         try {
             String userInfoJson = getUserInfoJson(sessionId, ip, question, answer, dateTime);
+            new Utf8Logger().printLog("user info json:===" + userInfoJson);
             ApacheHttpClient client = new Client().createRESTFulClient();
             ClientResponse response = client.resource(logServerUrl).type(MediaType.APPLICATION_JSON).post(ClientResponse.class, userInfoJson);
         } catch (Exception e) {

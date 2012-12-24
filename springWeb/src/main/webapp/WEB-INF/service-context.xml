@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                             http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
     <bean id="chatInfoLogger" class="springWeb.service.ChatInfoLogger">
-        <constructor-arg name="logServerUrl" value="http://localhost:9000/log-user-info"/>
+        <constructor-arg name="logServerUrl" value="http://localhost:10001/log-user-info"/>
     </bean>
 
     <!--<bean id="chatEngine" class="springWeb.service.ChatEngine">-->
