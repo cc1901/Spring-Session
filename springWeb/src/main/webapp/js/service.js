@@ -1,7 +1,12 @@
 /*
  针对机器人客服UI相关的函数
  */
+
+var contextPath = location.pathname.replace('/', '').replace(/\/.+/, '');
+var chatUrl = contextPath + '/talk';
+var clearSessionUrl = contextPath + '/clear-session';
 $(function() {
+
     String.prototype.format = function() {
         var args = arguments;
         return this.replace(/\{\{|\}\}|\{(\d+)\}/g, function(m, n) {
@@ -82,7 +87,7 @@ $(function() {
         this.serviceEvent = function() {
 
             window.onunload = function() {
-                $.get('/chat-engine/clear-session', function(data) {
+                $.get(clearSessionUrl, function(data) {
 
                 });
             }
@@ -273,14 +278,14 @@ $(function() {
         $(document).keyup(function(event) {
             var keycode = event.which;
             if (keycode == 116) {
-                $.get('/chat-engine/clear-session', function() {
+                $.get(clearSessionUrl, function() {
                 });
             }
         });
 
         //添加关闭事件
         window.onbeforeunload = function() {
-            $.get('/chat-engine/clear-session', function() {
+            $.get(clearSessionUrl, function() {
             });
         };
         /*

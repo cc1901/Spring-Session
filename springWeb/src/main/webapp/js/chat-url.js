@@ -1,1 +1,0 @@
-var chatUrl = '/chat-engine/talk';
