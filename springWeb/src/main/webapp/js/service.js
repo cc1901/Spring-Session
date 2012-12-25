@@ -3,8 +3,8 @@
  */
 
 var contextPath = location.pathname.replace('/', '').replace(/\/.+/, '');
-var chatUrl = contextPath + '/talk';
-var clearSessionUrl = contextPath + '/clear-session';
+var chatUrl = '/' + contextPath + '/talk';
+var clearSessionUrl = '/' + contextPath + '/clear-session';
 $(function() {
 
     String.prototype.format = function() {
