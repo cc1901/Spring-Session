@@ -3,6 +3,7 @@ package springWeb.airTicket;
 import org.springframework.cache.annotation.Cacheable;
 import springWeb.airTicket.response.model.TicketQueryResponse;
 import springWeb.util.HashGenerator;
+import springWeb.util.Utf8Logger;
 import springWeb.util.XmlParser;
 
 import javax.crypto.Mac;
@@ -46,6 +47,8 @@ public class TicketInformationFetcher {
                     "  <CabinLeval /> \n" +
                     "  <DiscountSelect /> \n" +
                     "</FlightSearchRequest>\n", criteria.getDeparture(), criteria.getDestination(), criteria.getDepartureDate());
+            new Utf8Logger().printLog("request xml:==============");
+            new Utf8Logger().printLog(requestXml);
             String requestHash = new sun.misc.BASE64Encoder().encode(mac.doFinal(requestXml.getBytes("UTF-8")));
             URL url = new URL("http://coservice.9588.com/default.aspx");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();

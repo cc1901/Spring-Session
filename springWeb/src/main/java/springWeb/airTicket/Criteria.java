@@ -2,6 +2,10 @@ package springWeb.airTicket;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Criteria {
     public Criteria() {
 
@@ -47,6 +51,13 @@ public class Criteria {
     }
 
     public String getDepartureDate() {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
+            Date date = dateFormat.parse(departureDate.trim());
+            return dateFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return departureDate.replaceAll("/", "-").trim();
     }
 
