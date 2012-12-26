@@ -6,6 +6,8 @@ import springWeb.airTicket.response.model.Cabin;
 
 import java.util.List;
 
+import static springWeb.helper.AirportMapping.getAirportName;
+
 public class AirLineView {
     private final List<Cabin> cabins;
     private final String price;
@@ -14,6 +16,7 @@ public class AirLineView {
     private final String departureDate;
     private final String orgAirport;
     private final String dstAirport;
+    public static final String AIRPORT_URL_TEMPLATE = "http://jipiao.9588.com/home/search?MoreTrip%5B0%5D.fromcity=%s&MoreTrip%5B0%5D.from=%s&MoreTrip%5B0%5D.tocity=%s&MoreTrip%5B0%5D.to=%s&MoreTrip%5B0%5D.date=%s&MoreTrip%5B1%5D.date=%s&segnum=0&quantity=1&airline=&classtype=&traveltype=Single";
 
     public AirLineView(List<Cabin> cabins, String price, String flightNumber, String departureDate, String arriveDate, String orgAirport, String dstAirport) {
         this.cabins = cabins;
@@ -23,6 +26,24 @@ public class AirLineView {
         this.departureDate = formatDate(departureDate);
         this.orgAirport = orgAirport;
         this.dstAirport = dstAirport;
+    }
+
+    @JsonProperty
+    public String getAirportUrl() {
+        String airportUrl = "http://jipiao.9588.com/home/search?MoreTrip%5B0%5D.fromcity=" +
+                getAirportName(orgAirport) +
+                "&MoreTrip%5B0%5D.from=" +
+                orgAirport +
+                "&MoreTrip%5B0%5D.tocity=" +
+                getAirportName(dstAirport) +
+                "&MoreTrip%5B0%5D.to=" +
+                dstAirport +
+                "&MoreTrip%5B0%5D.date=" +
+                formatDateForUrl(departureDate) +
+                "&MoreTrip%5B1%5D.date=" +
+                formatDateForUrl(arriveDate) +
+                "&segnum=0&quantity=1&airline=&classtype=&traveltype=Single";
+        return airportUrl;
     }
 
     @JsonProperty
@@ -65,7 +86,12 @@ public class AirLineView {
         return priceInt + "\u5143";
     }
 
-    String formatDate(String date) {
+    private String formatDate(String date) {
         return Strings.nullToEmpty(date).replace("T", " ").replaceAll(":[0-9][0-9]$", "");
     }
+
+    private String formatDateForUrl(String date) {
+        return date.replaceAll(" .*", "");
+    }
+
 }

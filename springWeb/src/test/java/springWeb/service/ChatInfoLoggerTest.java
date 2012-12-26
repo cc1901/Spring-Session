@@ -43,12 +43,12 @@ public class ChatInfoLoggerTest {
         String clientIp = "10.10.10.10";
         String sessionId = "sessionId";
         String question = "questionContent";
-        String answer = "answerContent";
+        String answer = "\"answer\"Content";
         Date currentDate = new Date();
         HttpServletRequest request = createRequest(clientIp, sessionId);
         new ChatInfoLogger(SERVER_URL + PORT).logChatHistoryInfo(request.getRequestedSessionId(), request.getRemoteAddr(), question, answer, currentDate);
         assertThat(httpHandler.getRequestBody(),
-                is("{\"ip\": \"10.10.10.10\", \"sessionId\": \"sessionId\", \"question\": \"questionContent\", \"answer\": \"answerContent\", \"time\": \"" + FullDateTimeFormator.format(currentDate) + "\"}"));
+                is("{\"ip\": \"10.10.10.10\", \"sessionId\": \"sessionId\", \"question\": \"questionContent\", \"answer\": \"\\\"answer\\\"Content\", \"time\": \"" + FullDateTimeFormator.format(currentDate) + "\"}"));
     }
 
     private HttpServletRequest createRequest(String clientIp, String sessionId) {

@@ -175,12 +175,12 @@ $(function() {
                 "</table>";
 
             var ticketInfoRow = "<tr>" +
-                "<td align=\"center\"><a target=\"_blank\" href=\"http://www.9588.com\">{0}</a></td>" +
-                "<td align=\"right\">{1}</td>" +
-                "<td align=\"center\">{2}</td>" +
+                "<td align=\"center\"><a target=\"_blank\" href=\"{0}\">{1}</a></td>" +
+                "<td align=\"right\">{2}</td>" +
                 "<td align=\"center\">{3}</td>" +
                 "<td align=\"center\">{4}</td>" +
                 "<td align=\"center\">{5}</td>" +
+                "<td align=\"center\">{6}</td>" +
                 "</tr>";
 
             var formatContent = function(template, content) {
@@ -240,7 +240,8 @@ $(function() {
                 if (airLines.length > 0) {
                     var ticketRows = '';
                     $.each(airLines, function(index) {
-                        ticketRows += ticketInfoRow.format(airLines[index].flightNumber,
+                        ticketRows += ticketInfoRow.format(airLines[index].airportUrl,
+                            airLines[index].flightNumber,
                             airLines[index].price,
                             airLines[index].departureDate,
                             airLines[index].arriveDate,

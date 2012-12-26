@@ -34,4 +34,10 @@ public class AirLineViewTest {
          is("{\"cabins\":[],\"price\":\"350元\",\"flightNumber\":\"123\",\"arriveDate\":\"2012-12-23 09:00\",\"departureDate\":\"2012-12-23 06:35\",\"orgAirport\":\"HTO\",\"dstAirport\":\"XI\"}"
          ));
     }
+
+    @Test
+    public void should_() {
+        String s = "2012-12-23 06:35".replaceAll(" .*", "");
+        System.out.println(s);
+    }
 }

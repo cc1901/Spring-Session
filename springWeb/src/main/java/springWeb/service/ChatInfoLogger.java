@@ -19,13 +19,23 @@ public class ChatInfoLogger {
 
     public void logChatHistoryInfo(String sessionId, String ip, String question, String answer, Date dateTime) {
         try {
-            String userInfoJson = getUserInfoJson(sessionId, ip, question, answer, dateTime);
+            new Utf8Logger().printLog("logger answer--------------------");
+            String answerInJson = stringInJson(answer);
+            String questionInJson = stringInJson(question);
+            new Utf8Logger().printLog(answerInJson);
+            new Utf8Logger().printLog(questionInJson);
+            new Utf8Logger().printLog("logger answer--------------------");
+            String userInfoJson = getUserInfoJson(sessionId, ip, questionInJson, answerInJson, dateTime);
             new Utf8Logger().printLog("user info json:===" + userInfoJson);
             ApacheHttpClient client = new Client().createRESTFulClient();
             ClientResponse response = client.resource(logServerUrl).type(MediaType.APPLICATION_JSON).post(ClientResponse.class, userInfoJson);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private String stringInJson(String answer) {
+        return answer.replace("\"", "\\\"");
     }
 
     private String getUserInfoJson(String sessionId, String ip, String question, String answer, Date dateTime) {
