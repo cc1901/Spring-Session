@@ -1,4 +1,4 @@
-body{margin:0;padding:0;font:12px/22px  "微软雅黑",Arial,simsum;color:#000; background:#fff;}
+body{margin:0;padding:0;font:12px/20px  "微软雅黑",Arial,simsum;color:#000; background:#fff;}
 html{ overflow:hidden;}
 ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,form,p{margin:0px;padding:0px;}
 ul,ol{list-style-type:none}
@@ -8,10 +8,10 @@ a{color:#000;text-decoration:none;}
 a:hover{color:#000;text-decoration:underline;}
 
 #panel{ display:none;}
-#header,#header .right,.msg span.arrow,.main-right ul li,.chkinput,.fun li.good a,.fun li.bad a{background:url(../images/bg_img.png) no-repeat;}
+#header,#header .right,.msg span.arrow,.main-right ul li,.chkinput,.fun li.good a,.fun li.bad a{}
 #header {width:100%;height:60px;color:#fff;background-color:#58b2f2;background-repeat:repeat-x;box-shadow:0 3px 3px;}
-#header .right{float:right; margin:18px 10px 0 0;font-size:14px;height:24px; line-height:24px;padding-right:85px; background-position: right -78px;}
-.appinfo {float:left;height:36px;padding:10px 0 0 10px;position:relative; width:300px;}
+#header .right{float:right; margin:18px 10px 0 0;font-size:14px;height:24px; line-height:24px;padding-right:85px; background-position: right -78px; width: 166px;background:url(../images/tel.gif) no-repeat;}
+.appinfo {float:left;height:40px;padding:10px 0 0 10px;position:relative; width:400px;}
 .appinfo .logo {background-color:#fff;border: 1px solid #335A8B;border-radius:5px 5px 5px 5px;float: left;margin-right: 10px;padding:2px;width:34px;height:34px;}
 .appinfo .logo img {display: block;width: 34px;}
 .appinfo h1 { font-size:15px;}
@@ -57,11 +57,14 @@ a:hover{color:#000;text-decoration:underline;}
 .main-left .time {clear:both;color:#ccc;}
 
 
-.main-right {float:right; min-width:219px; width:219px;background-color: #F8FBFE;border-left:1px solid #B9C1D1;box-shadow: 0 0 5px #aaa; height:5000px;}
+.main-right {float:right; min-width:219px; width:219px;background-color: #F8FBFE;border-left:1px solid #B9C1D1;box-shadow: 0 0 5px #aaa; height:5000px; position:relative;}
 .main-right  h2{background-color:#D4DAE2;font-size:14px;height:30px;line-height:30px;padding-left:19px;}
 .main-right ul{ padding:8px 10px;}
 .main-right ul li{ padding-left:8px;background-position:0 -200px;}
 .main-right ul li a{color: #5382AA;}
+.article{}
+.logo-banner {background:url(../images/robosay.png) no-repeat;width:219px;height:105px; background-color:white; position:absolute; right:0; bottom:0;}
+
 
 #inputpanel { clear:both;background-color:#D4DAE2;box-shadow:0 -3px 8px #DDDDDD;height:75px;padding-top:10px;width:100%;}
 .chatform {background-color:#fff;border:1px solid #D4DAE2;border-radius: 5px 5px 5px 5px;height: 39px;margin: 0 10px;}

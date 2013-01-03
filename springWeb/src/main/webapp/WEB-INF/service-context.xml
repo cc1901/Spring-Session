@@ -16,7 +16,7 @@
     </bean>
 
     <bean id="welcomeSentence" class="springWeb.service.WelcomeSentence">
-        <constructor-arg name="welcomeSentence" value="您好，我是9588在线客服机器人。我能帮您预定机票和解答乘坐飞机的常见问题。请问您的出发地，目的地还有出发时间是？"/>
+        <constructor-arg name="welcomeSentence" value="您好，我是9588智能客服机器人，我能帮您预定机票和解答乘坐飞机的常问题，也能帮能查询机票的信息。您可以使用“明年元旦从北京到上海”，“2012年12月21日从北京到上海”等类似的输入查询机票。"/>
     </bean>
 
     <bean id="chatService" class="springWeb.service.ChatService">
