@@ -183,9 +183,12 @@ $(function() {
                 "<td align=\"center\">{6}</td>" +
                 "</tr>";
 
+            var queryCriteria = "您查询的是{0},从{1}到{2}的机票</br>";
+
             var formatContent = function(template, content) {
                 return template.replace('$content$', content).replace('$time$', currentTime());
             };
+
 
             var currentTime = function() {
                 var date = new Date();
@@ -232,15 +235,18 @@ $(function() {
             };
 
             var getAnswer = function(data) {
+                var answer = "";
                 if (data.userAnswerPrefix == 'no ticket info') {
-                    return '建议:你查询的航班可能没有直达航班，请拨打400-818-9588人工查询。';
+                    answer += queryCriteria.format(data.ticketQuery.departureDate, airportMapping[data.ticketQuery.departure], airportMapping[data.ticketQuery.destination]);
+                    return answer + '未找到符合您要求的结果，您可以变更您的查询条件，或者拨打400-818-9588人工查询。';
                 }
-                var answer = data.userAnswerPrefix;
+                answer += data.userAnswerPrefix;
                 var airLines = data.airLines;
                 if (airLines.length > 0) {
                     var ticketRows = '';
                     $.each(airLines, function(index) {
-                        ticketRows += ticketInfoRow.format(airLines[index].airportUrl,
+                        ticketRows += ticketInfoRow.format(
+                            airLines[index].airportUrl,
                             airLines[index].flightNumber,
                             airLines[index].price,
                             airLines[index].departureDate,
@@ -250,6 +256,7 @@ $(function() {
                         );
                     });
                     answer += ticketInfoTable.format(ticketRows);
+                    answer = queryCriteria.format(data.ticketQuery.departureDate, airportMapping[data.ticketQuery.departure], airportMapping[data.ticketQuery.destination]) + answer;
                 }
                 answer += data.userAnswerSuffix;
                 return answer;

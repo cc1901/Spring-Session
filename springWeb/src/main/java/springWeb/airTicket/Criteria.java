@@ -52,8 +52,10 @@ public class Criteria {
 
     public String getDepartureDate() {
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+            dateFormat.setLenient(false);
             Date date = dateFormat.parse(departureDate.trim());
+            System.out.println(date);
             return dateFormat.format(date);
         } catch (ParseException e) {
             e.printStackTrace();

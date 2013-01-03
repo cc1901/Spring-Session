@@ -14,10 +14,14 @@ public class TicketAnswer {
     @JsonProperty("userAnswerSuffix")
     private String userAnswerSuffix;
 
-    public TicketAnswer(List<AirLineView> airLines, String userAnswerPrefix, String userAnswerSuffix) {
+    @JsonProperty("ticketQuery")
+    private TicketQueryView ticketQuery;
+
+    public TicketAnswer(List<AirLineView> airLines, String userAnswerPrefix, String userAnswerSuffix, TicketQueryView ticketQuery) {
         this.airLines = airLines;
         this.userAnswerPrefix = userAnswerPrefix;
         this.userAnswerSuffix = userAnswerSuffix;
+        this.ticketQuery = ticketQuery;
     }
 
     @JsonProperty

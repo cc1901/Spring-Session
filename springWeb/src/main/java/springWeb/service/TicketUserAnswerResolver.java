@@ -9,6 +9,7 @@ import springWeb.airTicket.response.model.TicketQueryResponse;
 import springWeb.view.TicketAnswer;
 import springWeb.helper.AirLineViewsHelper;
 import springWeb.util.Utf8Logger;
+import springWeb.view.TicketQueryView;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,6 +24,7 @@ public class TicketUserAnswerResolver {
 
     public TicketAnswer getTicketAnswer(String answer) throws IOException {
         List<AirLine> airLines = Lists.newArrayList();
+        TicketQueryView ticketQueryView = new TicketQueryView();
         if (hasQuery(answer)) {
             TicketQueryResponse ticketQueryResponse = new TicketQueryResponse();
             utf8Logger.printLog("fetch+++++++++++++++++++++");
@@ -33,14 +35,15 @@ public class TicketUserAnswerResolver {
             TicketQuery ticketQuery = ticketQueryParser.parse(query);
             TicketInformationFetcher ticketInformationFetcher = new TicketInformationFetcher();
             ticketQueryResponse = ticketInformationFetcher.fetch(ticketQuery.getCriteria());
+            ticketQueryView = new TicketQueryView(ticketQuery.getCriteria());
             if (noAirTicketInfo(ticketQueryResponse)) {
                 String userAnswer = new String("no ticket info");
-                return new TicketAnswer(AirLineViewsHelper.transferAirLineView(airLines), userAnswer, "");
+                return new TicketAnswer(AirLineViewsHelper.transferAirLineView(airLines), userAnswer, "", ticketQueryView);
             }
             List<AirLine> queriedAirLines = ticketQueryResponse.getLinesCollection().getLines().getAirLines();
             airLines = airTicketsAfterProcess(airLines, ticketQuery, queriedAirLines);
         }
-        return getTicketAnswer(answer, airLines);
+        return getTicketAnswer(answer, airLines, ticketQueryView);
     }
 
     private String getQuery(String answer) {
@@ -49,16 +52,16 @@ public class TicketUserAnswerResolver {
         return answer.substring(queryStart, queryEnd);
     }
 
-    private TicketAnswer getTicketAnswer(String answer, List<AirLine> airLines) {
+    private TicketAnswer getTicketAnswer(String answer, List<AirLine> airLines, TicketQueryView ticketQueryView) {
         String userAnswer = answer;
         String userAnswerPrefix = "";
         String userAnswerSuffix = "";
         if (hasQuery(answer)) {
             userAnswerSuffix = userAnswer.substring(userAnswer.indexOf(BREAK) + (BREAK).length());
             userAnswerPrefix = userAnswer.substring(0, userAnswer.indexOf(TICKET_QUERY_FLAG));
-            return new TicketAnswer(AirLineViewsHelper.transferAirLineView(airLines), userAnswerPrefix, userAnswerSuffix);
+            return new TicketAnswer(AirLineViewsHelper.transferAirLineView(airLines), userAnswerPrefix, userAnswerSuffix, ticketQueryView);
         }
-        return new TicketAnswer(AirLineViewsHelper.transferAirLineView(airLines), userAnswer, userAnswerSuffix);
+        return new TicketAnswer(AirLineViewsHelper.transferAirLineView(airLines), userAnswer, userAnswerSuffix, ticketQueryView);
     }
 
     private boolean noAirTicketInfo(TicketQueryResponse ticketQueryResponse) {
