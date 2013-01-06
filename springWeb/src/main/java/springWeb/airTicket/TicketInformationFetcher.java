@@ -80,9 +80,9 @@ public class TicketInformationFetcher {
             httpURLConnection.disconnect();
             XmlParser<TicketQueryResponse> parser = new XmlParser<TicketQueryResponse>();
             PrintStream utf8Out = new PrintStream(System.out, true, "UTF-8");
-            if (response.length() < 500) {
+//            if (response.length() < 500) {
                 utf8Out.println("response string++++++++++++++++++++++++" + response.toString());
-            }
+//            }
             utf8Out.println("response length++++++++++++++++++++++++" + response.length());
             TicketQueryResponse ticketQueryResponse = parser.parse(response.toString(), TicketQueryResponse.class);
             utf8Out.println("successfully fetch ticket info++++++++++++++++++++++++");

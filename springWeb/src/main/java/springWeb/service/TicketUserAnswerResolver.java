@@ -1,9 +1,8 @@
 package springWeb.service;
 
 import com.google.common.collect.Lists;
-import springWeb.airTicket.TicketInformationFetcher;
-import springWeb.airTicket.TicketQuery;
-import springWeb.airTicket.TicketQueryParser;
+import springWeb.airTicket.*;
+import springWeb.airTicket.airlineProcesser.AirlinePostProcessor;
 import springWeb.airTicket.response.model.AirLine;
 import springWeb.airTicket.response.model.TicketQueryResponse;
 import springWeb.view.TicketAnswer;
@@ -40,8 +39,8 @@ public class TicketUserAnswerResolver {
                 String userAnswer = new String("no ticket info");
                 return new TicketAnswer(AirLineViewsHelper.transferAirLineView(airLines), userAnswer, "", ticketQueryView);
             }
-            List<AirLine> queriedAirLines = ticketQueryResponse.getLinesCollection().getLines().getAirLines();
-            airLines = airTicketsAfterProcess(airLines, ticketQuery, queriedAirLines);
+
+            airLines = AirlinePostProcessor.postProcess(ticketQuery, ticketQueryResponse.getLinesCollection().getLines().getAirLines());
         }
         return getTicketAnswer(answer, airLines, ticketQueryView);
     }
@@ -68,17 +67,6 @@ public class TicketUserAnswerResolver {
         return ticketQueryResponse.getLinesCollection() == null ||
                 ticketQueryResponse.getLinesCollection().getLines() == null ||
                 ticketQueryResponse.getLinesCollection().getLines().getAirLines() == null;
-    }
-
-    private List<AirLine> airTicketsAfterProcess(List<AirLine> airLines, TicketQuery ticketQuery, List<AirLine> queriedAirLines) {
-        airLines = queriedAirLines;
-
-        for (AirLine airLine : airLines) {
-            airLine.calculatePrice();
-        }
-        TicketSorter.sort(airLines, ticketQuery);
-        airLines = airLines.subList(0, Math.min(airLines.size() - 1, 5));
-        return airLines;
     }
 
     private boolean hasQuery(String answer) {
